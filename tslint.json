@@ -13,6 +13,10 @@
         "order": "fields-first"
       }
     ],
+    "no-implicit-dependencies": [
+      true,
+      "dev"
+    ],
     "no-submodule-imports": false,
     "no-switch-case-fall-through": true,
     "object-literal-key-quotes": false,

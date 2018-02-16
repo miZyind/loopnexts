@@ -26,11 +26,11 @@
 
 #### 🌆 Backend
 - **[Koa](http://koajs.com)** - Next generation web framework for node.js.
+  - **[Koa Webpack Middleware](https://github.com/leecade/koa-webpack-middleware)** - Webpack dev & hot middleware for koa2.
 
 #### 📦 Bundler
 - **[Webpack](https://webpack.js.org)** - Bundler for JavaScript and friends.
   - **[HMR](https://webpack.js.org/concepts/hot-module-replacement)** - Exchanges, adds, or removes module while an application is running, without a full reload.
-  - **[webpack-dev-server](https://github.com/webpack/webpack-dev-server)** - Serves a webpack app. Updates the browser on changes.
   - **[optimize-js-plugin](https://github.com/vigneshshanmugam/optimize-js-plugin)** - Optimize a JavaScript file for faster initial load by wrapping eagerly-invoked functions.
   - **[html-webpack-plugin](https://github.com/jantimon/html-webpack-plugin)** - Simplifies creation of HTML files to serve your webpack bundles.
   - **[assets-webpack-plugin](https://github.com/kossnocorp/assets-webpack-plugin)** - Emits a json file with assets paths.

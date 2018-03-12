@@ -14,7 +14,9 @@
     "analyze:client": "cross-env ANALYZE_BUNDLE=true yarn build:client",
     "build": "yarn clean && yarn build:server && yarn build:client",
     "build:server": "cross-env NODE_ENV=production webpack --config config/webpack/server/webpack.prod.ts",
-    "build:client": "cross-env NODE_ENV=production webpack --config config/webpack/client/webpack.prod.ts"
+    "build:client": "cross-env NODE_ENV=production webpack --config config/webpack/client/webpack.prod.ts",
+    "test": "yarn clean && yarn webpack --config config/webpack/client/webpack.ts --mode development",
+    "testp": "yarn clean && yarn webpack --config config/webpack/client/webpack.ts --mode production"
   },
   "dependencies": {
     "chalk": "^2.3.2",

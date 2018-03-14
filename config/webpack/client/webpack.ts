@@ -32,7 +32,6 @@ const config: webpack.Configuration = {
           {
             loader: require.resolve('postcss-loader'),
             options: {
-              ident: 'postcss',
               plugins: () => [
                 require('postcss-flexbugs-fixes'),
                 autoprefixer({
@@ -59,18 +58,6 @@ const config: webpack.Configuration = {
         use: 'file-loader?limit=100000&name=assets/[name].[hash:6].[ext]'
       },
     ]
-  },
-  optimization: {
-    minimize: true,
-    namedChunks: true,
-    noEmitOnErrors: true,
-    namedModules: true,
-    concatenateModules: true
-    // splitChunks: {
-    //   name: true,
-    //   chunks: 'all',
-    //   minChunks: 2
-    // }
   },
   plugins: [
     new webpack.ProgressPlugin(),

@@ -1,13 +1,12 @@
 // Node module
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { render } from 'react-dom';
 // Style
 import 'semantic-ui-css/semantic.min.css';
 // Container
 import App from './containers/app';
+// Env
+const name = process.env.APP_NAME!;
+const version = process.env.APP_VERSION!;
 
-const MOUNT_NODE = document.getElementById('root');
-
-ReactDOM.render(<App name='RKSTWB' />, MOUNT_NODE);
-
-if (module.hot) { module.hot.accept(); }
+render(<App name={name} version={version} />, document.getElementById('root'));

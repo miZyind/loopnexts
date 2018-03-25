@@ -1,53 +1,30 @@
 // Node module
 import webpack from 'webpack';
-import autoprefixer from 'autoprefixer';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 // Config
+import env from '../env';
 import paths from '../paths';
 
-const config: webpack.Configuration = {
+const baseConfig: webpack.Configuration = {
   stats: 'minimal',
   target: 'web',
-  entry: [
-    paths.client
-  ],
-  output: {
-    path: paths.dist,
-    filename: '[name].js'
-  },
+  entry: [paths.client],
   resolve: {
+    modules: ['node_modules', paths.nodeModules],
     extensions: ['.js', '.jsx', '.ts', '.tsx', '.json']
   },
   module: {
     rules: [
       {
         test: /\.tsx?$/,
-        use: 'ts-loader?silent=true&transpileOnly=true'
-      },
-      {
-        test: /\.css$/,
-        use: [
-          'style-loader',
-          { loader: 'css-loader', options: { importLoaders: 1 } },
-          {
-            loader: require.resolve('postcss-loader'),
-            options: {
-              plugins: () => [
-                require('postcss-flexbugs-fixes'),
-                autoprefixer({
-                  browsers: [
-                    '>1%',
-                    'last 4 versions',
-                    'Firefox ESR',
-                    'not ie < 9'
-                  ],
-                  flexbox: 'no-2009'
-                })
-              ],
-              sourceMap: true
-            }
+        use: {
+          loader: 'ts-loader',
+          options: {
+            silent: true,
+            transpileOnly: true,
+            compilerOptions: { ...env.tsCompilerOptions, target: 'es6', module: 'esnext' }
           }
-        ]
+        }
       },
       {
         test: [/\.bmp$/, /\.gif$/, /\.jpe?g$/, /\.png$/, /\.svg$/],
@@ -56,14 +33,17 @@ const config: webpack.Configuration = {
       {
         test: /\.(ico|eot|otf|webp|ttf|woff|woff2)$/i,
         use: 'file-loader?limit=100000&name=assets/[name].[hash:6].[ext]'
-      },
+      }
     ]
   },
   plugins: [
-    new webpack.ProgressPlugin(),
+    new webpack.DefinePlugin({
+      'process.env.APP_NAME': JSON.stringify(env.appName),
+      'process.env.APP_VERSION': JSON.stringify(env.appVersion)
+    }),
     new HtmlWebpackPlugin({
-      // title: '123',
-      template: paths.template,
+      title: env.appName,
+      template: paths.htmlTemplate,
       favicon: 'public/favicon.ico',
       minify: {
         minifyJS: true,
@@ -81,4 +61,4 @@ const config: webpack.Configuration = {
   ]
 };
 
-export default config;
+export default baseConfig;

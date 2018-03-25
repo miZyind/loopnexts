@@ -2,9 +2,10 @@
 import webpack from 'webpack';
 import nodeExternals from 'webpack-node-externals';
 // Config
+import env from '../env';
 import paths from '../paths';
 
-const config: webpack.Configuration = {
+const baseConfig: webpack.Configuration = {
   stats: 'minimal',
   target: 'node',
   entry: paths.server,
@@ -13,6 +14,7 @@ const config: webpack.Configuration = {
     filename: 'index.js'
   },
   resolve: {
+    modules: ['node_modules', paths.nodeModules],
     extensions: ['.js', '.jsx', '.ts', '.tsx', '.json']
   },
   module: {
@@ -24,9 +26,14 @@ const config: webpack.Configuration = {
     ]
   },
   plugins: [
-    new webpack.ProgressPlugin()
+    new webpack.DefinePlugin({
+      'process.env.APP_NAME': JSON.stringify(env.appName),
+      'process.env.APP_VERSION': JSON.stringify(env.appVersion),
+      'process.env.APP_DIST': JSON.stringify(paths.dist),
+      'process.env.APP_PORT': JSON.stringify(env.appPort)
+    })
   ],
   externals: [nodeExternals()]
 };
 
-export default config;
+export default baseConfig;

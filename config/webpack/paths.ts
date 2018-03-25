@@ -9,7 +9,7 @@ const resolveApp = (relativePath: string) => path.resolve(appPath, relativePath)
 const paths = {
   dist: resolveApp('dist'),
   nodeModules: resolveApp('node_modules'),
-  template: resolveApp('public/index.html'),
+  htmlTemplate: resolveApp('public/index.html'),
   client: resolveApp('src/client'),
   server: resolveApp('src/server')
 };

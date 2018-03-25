@@ -12,9 +12,11 @@ import {
   Step
 } from 'semantic-ui-react';
 import styled from 'styled-components';
+import { hot } from 'react-hot-loader';
 
 interface IAppProps {
   name: string;
+  version: string;
   className?: string;
 }
 
@@ -33,7 +35,7 @@ class App extends React.Component<IAppProps, IAppState> {
   }
 
   public render() {
-    const { name, className } = this.props;
+    const { name, version, className } = this.props;
     const { isLoading } = this.state;
 
     return (
@@ -56,13 +58,12 @@ class App extends React.Component<IAppProps, IAppState> {
               </Transition>
               <Header as='h1' icon textAlign='center'>
                 <Image centered size='large' src='/favicon.ico' />
-                <Header.Content>RKSTWB</Header.Content>
+                <Header.Content>{`${name} v${version}`}</Header.Content>
               </Header>
               <Step.Group ordered>
                 <Step completed>
                   <Step.Content>
                     <Step.Title>Getting Started</Step.Title>
-                    <Step.Description>Hello RKSTWB!</Step.Description>
                   </Step.Content>
                 </Step>
               </Step.Group>
@@ -74,8 +75,8 @@ class App extends React.Component<IAppProps, IAppState> {
   }
 }
 
-export default styled(App) `
+export default hot(module)(styled(App) `
   .app-grid {
     height: 100vh;
   }
-`;
+`);

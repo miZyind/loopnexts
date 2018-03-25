@@ -26,20 +26,13 @@
 
 #### 🌆 Backend
 - **[Koa](http://koajs.com)** - Next generation web framework for node.js.
-  - **[Koa Webpack Middleware](https://github.com/leecade/koa-webpack-middleware)** - Webpack dev & hot middleware for koa2.
+  - **[Koa Webpack](https://github.com/shellscape/koa-webpack)** - Development and Hot Reload Middleware for Koa2.
 
 #### 📦 Bundler
-- **[Webpack](https://webpack.js.org)** - Bundler for JavaScript and friends.
+- **[Webpack 4](https://webpack.js.org)** - Bundler for JavaScript and friends.
   - **[HMR](https://webpack.js.org/concepts/hot-module-replacement)** - Exchanges, adds, or removes module while an application is running, without a full reload.
-  - **[optimize-js-plugin](https://github.com/vigneshshanmugam/optimize-js-plugin)** - Optimize a JavaScript file for faster initial load by wrapping eagerly-invoked functions.
   - **[html-webpack-plugin](https://github.com/jantimon/html-webpack-plugin)** - Simplifies creation of HTML files to serve your webpack bundles.
-  - **[assets-webpack-plugin](https://github.com/kossnocorp/assets-webpack-plugin)** - Emits a json file with assets paths.
-  - **[autodll-webpack-plugin](https://github.com/asfktz/autodll-webpack-plugin)** - DllPlugin without the boilerplate.
-  - **[webpack-bundle-analyzer](https://github.com/robertknight/webpack-bundle-size-analyzer)** - A tool for finding out what contributes to the size of Webpack bundles.
-  - **[uglifyjs-webpack-plugin](https://github.com/webpack-contrib/uglifyjs-webpack-plugin)** - Minify your JavaScript.
   - **[extract-text-webpack-plugin](https://github.com/webpack-contrib/extract-text-webpack-plugin)** - Extract text from bundle into a file.
-  - **[compression-webpack-plugin](https://github.com/webpack-contrib/compression-webpack-plugin)** - Prepare compressed versions of assets to serve them with Content-Encoding.
-  - **[optimize-css-assets-webpack-plugin](https://github.com/NMFR/optimize-css-assets-webpack-plugin)** - Optimize & minimize CSS assets.
 
 ## Author
 

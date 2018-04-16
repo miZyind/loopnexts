@@ -1,6 +1,7 @@
 // Node module
 import React from 'react';
-import ReactDOM from 'react-dom';
+import styled from 'styled-components';
+import { hot } from 'react-hot-loader';
 import {
   Container,
   Grid,
@@ -11,8 +12,9 @@ import {
   Image,
   Step
 } from 'semantic-ui-react';
-import styled from 'styled-components';
-import { hot } from 'react-hot-loader';
+import { Bind } from 'lodash-decorators';
+// Component
+import FullGrid from '@components/full-grid';
 
 interface IAppProps {
   name: string;
@@ -22,12 +24,13 @@ interface IAppProps {
 
 interface IAppState {
   isLoading: boolean;
+  isCompleted: boolean;
 }
 
 class App extends React.Component<IAppProps, IAppState> {
   constructor(props: IAppProps) {
     super(props);
-    this.state = { isLoading: true };
+    this.state = { isLoading: true, isCompleted: false };
   }
 
   public componentDidMount() {
@@ -35,20 +38,12 @@ class App extends React.Component<IAppProps, IAppState> {
   }
 
   public render() {
-    const { name, version, className } = this.props;
-    const { isLoading } = this.state;
+    const { name, version } = this.props;
+    const { isLoading, isCompleted } = this.state;
 
     return (
-      <Container className={className}>
-        <Grid
-          verticalAlign='middle'
-          centered
-          columns={1}
-          textAlign='center'
-          relaxed
-          stretched
-          className='app-grid'
-        >
+      <Container>
+        <FullGrid>
           <Grid.Row>
             <Grid.Column>
               <Transition visible={isLoading} duration={500} unmountOnHide>
@@ -61,7 +56,7 @@ class App extends React.Component<IAppProps, IAppState> {
                 <Header.Content>{`${name} v${version}`}</Header.Content>
               </Header>
               <Step.Group ordered>
-                <Step completed>
+                <Step completed={isCompleted} onClick={this.toggleStepStatus}>
                   <Step.Content>
                     <Step.Title>Getting Started</Step.Title>
                   </Step.Content>
@@ -69,14 +64,15 @@ class App extends React.Component<IAppProps, IAppState> {
               </Step.Group>
             </Grid.Column>
           </Grid.Row>
-        </Grid>
+        </FullGrid>
       </Container>
     );
   }
+
+  @Bind
+  private toggleStepStatus() {
+    this.setState({ isCompleted: !this.state.isCompleted });
+  }
 }
 
-export default hot(module)(styled(App) `
-  .app-grid {
-    height: 100vh;
-  }
-`);
+export default hot(module)(App);

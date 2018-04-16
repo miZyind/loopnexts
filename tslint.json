@@ -1,6 +1,7 @@
 {
   "extends": "tslint:latest",
   "rules": {
+    "interface-over-type-literal": false,
     "linebreak-style": [
       true,
       "LF"
@@ -13,10 +14,7 @@
         "order": "fields-first"
       }
     ],
-    "no-implicit-dependencies": [
-      true,
-      "dev"
-    ],
+    "no-implicit-dependencies": false,
     "no-submodule-imports": false,
     "no-switch-case-fall-through": true,
     "object-literal-key-quotes": false,

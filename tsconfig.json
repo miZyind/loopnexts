@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "target": "es2017",
+    "target": "esnext",
     "module": "commonjs",
     "strict": true,
     "outDir": "dist",
@@ -10,6 +10,21 @@
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "allowSyntheticDefaultImports": true,
-    "esModuleInterop": true
+    "esModuleInterop": true,
+    "baseUrl": "src",
+    "paths": {
+      "@actions/*": ["client/actions/*"],
+      "@components/*": ["client/components/*"],
+      "@containers/*": ["client/containers/*"],
+      "@helpers/*": ["client/helpers/*"],
+      "@reducers/*": ["client/reducers/*"],
+      "@routes/*": ["client/routes/*"],
+      "#lib/*": ["lib/*"]
+    },
+    "plugins": [
+      {
+        "name": "typescript-styled-plugin"
+      }
+    ]
   }
 }

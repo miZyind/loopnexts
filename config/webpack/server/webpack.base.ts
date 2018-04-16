@@ -14,6 +14,9 @@ const baseConfig: webpack.Configuration = {
     filename: 'index.js'
   },
   resolve: {
+    alias: {
+      '#lib': paths.resolveApp('src/lib')
+    },
     modules: ['node_modules', paths.nodeModules],
     extensions: ['.js', '.jsx', '.ts', '.tsx', '.json']
   },

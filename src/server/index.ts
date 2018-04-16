@@ -4,7 +4,7 @@ import path from 'path';
 import serve from 'koa-static';
 import logger from 'koa-logger';
 // Lib
-import pino from '../lib/logger';
+import pino from '#lib/logger';
 // Middleware
 import hmrMiddleware from './middleware/hmr-middleware';
 // Env

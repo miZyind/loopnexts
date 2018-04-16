@@ -10,6 +10,15 @@ const baseConfig: webpack.Configuration = {
   target: 'web',
   entry: [paths.client],
   resolve: {
+    alias: {
+      '@actions': paths.resolveApp('src/client/actions'),
+      '@components': paths.resolveApp('src/client/components'),
+      '@containers': paths.resolveApp('src/client/containers'),
+      '@helpers': paths.resolveApp('src/client/helpers'),
+      '@reducers': paths.resolveApp('src/client/reducers'),
+      '@routes': paths.resolveApp('src/client/routes'),
+      '#lib': paths.resolveApp('src/lib')
+    },
     modules: ['node_modules', paths.nodeModules],
     extensions: ['.js', '.jsx', '.ts', '.tsx', '.json']
   },

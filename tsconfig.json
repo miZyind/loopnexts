@@ -1,16 +1,21 @@
 {
   "compilerOptions": {
+    /* Basic Options */
     "target": "esnext",
     "module": "commonjs",
-    "strict": true,
-    "outDir": "dist",
-    "sourceMap": true,
     "jsx": "react",
+    "sourceMap": true,
+    "outDir": "dist",
+    /* Strict Type-Checking Options */
+    "strict": true,
+    /* Additional Checks */
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "forceConsistentCasingInFileNames": true,
+    /* Module Resolution Options*/
     "moduleResolution": "node",
-    "emitDecoratorMetadata": true,
-    "experimentalDecorators": true,
-    "allowSyntheticDefaultImports": true,
-    "esModuleInterop": true,
     "baseUrl": "src",
     "paths": {
       "@actions/*": ["client/actions/*"],
@@ -21,10 +26,12 @@
       "@routes/*": ["client/routes/*"],
       "#lib/*": ["lib/*"]
     },
-    "plugins": [
-      {
-        "name": "typescript-styled-plugin"
-      }
-    ]
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    /* Experimental Options */
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    /* Plugins */
+    "plugins": [{ "name": "typescript-styled-plugin" }]
   }
 }

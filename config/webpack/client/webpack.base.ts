@@ -31,27 +31,27 @@ const baseConfig: webpack.Configuration = {
           options: {
             silent: true,
             transpileOnly: true,
-            compilerOptions: { ...env.tsCompilerOptions, target: 'es6', module: 'esnext' }
+            compilerOptions: { target: 'es6', module: 'esnext' }
           }
         }
       },
       {
         test: [/\.bmp$/, /\.gif$/, /\.jpe?g$/, /\.png$/, /\.svg$/],
-        use: 'url-loader?limit=4096&name=assets/[name].[hash:6].[ext]'
+        use: 'url-loader?limit=4096&name=assets/images/[name].[hash:6].[ext]'
       },
       {
         test: /\.(ico|eot|otf|webp|ttf|woff|woff2)$/i,
-        use: 'file-loader?limit=100000&name=assets/[name].[hash:6].[ext]'
+        use: 'file-loader?limit=100000&name=assets/fonts/[name].[hash:6].[ext]'
       }
     ]
   },
   plugins: [
     new webpack.DefinePlugin({
-      'process.env.APP_NAME': JSON.stringify(env.appName),
-      'process.env.APP_VERSION': JSON.stringify(env.appVersion)
+      'process.env.APP_NAME': JSON.stringify(env.name),
+      'process.env.APP_VERSION': JSON.stringify(env.version)
     }),
     new HtmlWebpackPlugin({
-      title: env.appName,
+      title: env.name,
       template: paths.htmlTemplate,
       favicon: 'public/favicon.ico',
       minify: {

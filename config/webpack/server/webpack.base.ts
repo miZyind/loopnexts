@@ -24,16 +24,26 @@ const baseConfig: webpack.Configuration = {
     rules: [
       {
         test: /\.tsx?$/,
-        use: 'ts-loader?silent=true&transpileOnly=true'
+        use: {
+          loader: 'ts-loader',
+          options: {
+            silent: true,
+            transpileOnly: true,
+            compilerOptions: { module: 'esnext' }
+          }
+        }
       }
     ]
   },
   plugins: [
     new webpack.DefinePlugin({
-      'process.env.APP_NAME': JSON.stringify(env.appName),
-      'process.env.APP_VERSION': JSON.stringify(env.appVersion),
-      'process.env.APP_DIST': JSON.stringify(paths.dist),
-      'process.env.APP_PORT': JSON.stringify(env.appPort)
+      'process.env.APP_NAME': JSON.stringify(env.name),
+      'process.env.APP_VERSION': JSON.stringify(env.version),
+      'process.env.APP_PROTOCOL': JSON.stringify(env.connection.protocol),
+      'process.env.APP_HOST': JSON.stringify(env.connection.host),
+      'process.env.APP_PORT': JSON.stringify(env.connection.port),
+      'process.env.APP_PATH': JSON.stringify(env.connection.path),
+      'process.env.APP_DIST': JSON.stringify(paths.dist)
     })
   ],
   externals: [nodeExternals()]

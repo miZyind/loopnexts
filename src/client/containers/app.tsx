@@ -1,48 +1,40 @@
 // Node module
 import React from 'react';
-import styled from 'styled-components';
-import { hot } from 'react-hot-loader';
-import {
-  Container,
-  Grid,
-  Transition,
-  Dimmer,
-  Loader,
-  Header,
-  Image,
-  Step
-} from 'semantic-ui-react';
-import { Bind } from 'lodash-decorators';
+import { connect } from 'react-redux';
+import { Container, Grid, Transition, Dimmer, Loader, Header, Image, Step } from 'semantic-ui-react';
 // Component
 import FullGrid from '@components/full-grid';
+// Action
+import { Actions } from '@actions/main';
+// Model
+import { IStore } from '../models';
+import { IMain } from '../models/main';
 
-interface IAppProps {
+type StateProps = IMain;
+type DispatchProps = typeof Actions;
+type OwnProps = {
   name: string;
   version: string;
   className?: string;
-}
+};
 
-interface IAppState {
-  isLoading: boolean;
-  isCompleted: boolean;
-}
-
-class App extends React.Component<IAppProps, IAppState> {
-  constructor(props: IAppProps) {
-    super(props);
-    this.state = { isLoading: true, isCompleted: false };
-  }
-
+class App extends React.Component<StateProps & DispatchProps & OwnProps> {
   public componentDidMount() {
-    setTimeout(() => this.setState({ isLoading: false }), 1500);
+    setTimeout(this.props.toggleLoadingStatus, 1500);
   }
 
   public render() {
-    const { name, version } = this.props;
-    const { isLoading, isCompleted } = this.state;
+    const {
+      // StateProps
+      isLoading, isCompleted,
+      // DispatchProps
+      toggleStepStatue,
+      // OwnProps
+      name, version, className
+    } = this.props;
 
     return (
-      <Container>
+      <Container className={className}>
         <FullGrid>
           <Grid.Row>
             <Grid.Column>
@@ -56,7 +48,7 @@ class App extends React.Component<IAppProps, IAppState> {
                 <Header.Content>{`${name} v${version}`}</Header.Content>
               </Header>
               <Step.Group ordered>
-                <Step completed={isCompleted} onClick={this.toggleStepStatus}>
+                <Step completed={isCompleted} onClick={toggleStepStatue}>
                   <Step.Content>
                     <Step.Title>Getting Started</Step.Title>
                   </Step.Content>
@@ -68,11 +60,9 @@ class App extends React.Component<IAppProps, IAppState> {
       </Container>
     );
   }
-
-  @Bind
-  private toggleStepStatus() {
-    this.setState({ isCompleted: !this.state.isCompleted });
-  }
 }
 
-export default hot(module)(App);
+export default connect<StateProps, DispatchProps, OwnProps, IStore>(
+  (state) => state.main,
+  Actions
+)(App);

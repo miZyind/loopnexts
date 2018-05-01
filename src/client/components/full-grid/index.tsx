@@ -3,7 +3,12 @@ import React from 'react';
 import styled from 'styled-components';
 import { Grid } from 'semantic-ui-react';
 
-const FullGrid = ({ className, children }: any) => (
+type FullGridProps = {
+  className?: string;
+  children?: React.ReactNode;
+};
+
+const FullGrid = ({ className, children }: FullGridProps) => (
   <Grid
     relaxed
     centered

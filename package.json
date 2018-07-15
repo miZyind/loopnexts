@@ -8,10 +8,10 @@
   "scripts": {
     "clean": "rimraf build/*",
     "serve": "node build/index.js",
-    "start": "webpack --config config/webpack/server/webpack.dev.ts && node build/index.js",
+    "start": "cross-env TS_NODE_FILES=true webpack --config config/webpack/server/webpack.dev.ts && node build/index.js",
     "build": "yarn clean && yarn build:server && yarn build:client",
-    "build:server": "webpack --config config/webpack/server/webpack.prod.ts",
-    "build:client": "webpack --config config/webpack/client/webpack.prod.ts",
+    "build:server": "cross-env TS_NODE_FILES=true webpack --config config/webpack/server/webpack.prod.ts",
+    "build:client": "cross-env TS_NODE_FILES=true webpack --config config/webpack/client/webpack.prod.ts",
     "defaults": "webpack-defaults"
   },
   "dependencies": {
@@ -55,6 +55,7 @@
     "@types/webpack-env": "^1.13.6",
     "autoprefixer": "^8.6.5",
     "compression-webpack-plugin": "^1.1.11",
+    "cross-env": "^5.2.0",
     "css-loader": "^1.0.0",
     "extract-text-webpack-plugin": "^4.0.0-beta.0",
     "file-loader": "^1.1.11",

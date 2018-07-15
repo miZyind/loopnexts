@@ -1,7 +1,7 @@
 // Extract process.env, use process.env or webpack define-plugin's settings
 const {
   NODE_ENV = process.env.NODE_ENV === 'development',
-  APP_DIST = process.env.APP_DIST!,
+  APP_BUILD = process.env.APP_BUILD!,
   APP_NAME = process.env.APP_NAME!,
   APP_VERSION = process.env.APP_VERSION!,
   APP_PROTOCOL = process.env.APP_PROTOCOL!,
@@ -12,7 +12,7 @@ const {
 
 const config = {
   isDev: NODE_ENV,
-  dist: APP_DIST,
+  build: APP_BUILD,
   name: APP_NAME,
   version: APP_VERSION,
   connection: {

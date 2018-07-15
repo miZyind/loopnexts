@@ -33,4 +33,6 @@ if (pino.pretty) {
   logger = pino({ prettyPrint: true });
 }
 
+logger.level = process.env.NODE_ENV === 'development' ? 'debug' : 'info';
+
 export default logger;

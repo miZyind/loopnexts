@@ -1,29 +1,34 @@
-// Node Module
+// Node module
+import url from 'url';
 import Koa from 'koa';
-import { format } from 'url';
 import serve from 'koa-static';
-import logger from 'koa-logger';
+import koaLogger from 'koa-logger';
 // Lib
-import pino from '#lib/logger';
+import logger from '#lib/logger';
 // Middleware
-import hmrMiddleware from './middleware/hmr-middleware';
+import hmrMiddleware from './middleware/hmr';
+import rewriteMiddleware from './middleware/rewrite';
 // Config
 import config from './config';
-
-const { isDev, dist, name, version, connection } = config;
+// Env
+const { isDev, build, name, version, connection } = config;
 const { protocol, host, port, path } = connection;
-const address = format({ protocol, hostname: host, port, pathname: path });
+
+// Init App
 const app = new Koa();
 
+app
+  .use(koaLogger())
+  .use(rewriteMiddleware());
+
 if (isDev) {
-  app
-    .use(logger())
-    .use(hmrMiddleware());
+  app.use(hmrMiddleware());
 } else {
-  app
-    .use(serve(dist));
+  app.use(serve(build));
 }
 
-app
-  .use(async (ctx) => { ctx.redirect('/'); })
-  .listen(port, () => pino.info(`${name} v${version} [Address] ${address} [Mode] ${isDev ? '⚙️' : '🌎'}`));
+app.listen(port, () => {
+  const address = url.format({ protocol, hostname: host, port, pathname: path });
+  const msg = `${name} v${version} [Address] ${address} [Mode] ${isDev ? '⚙️' : '🌎'}`;
+  logger.info(msg);
+});

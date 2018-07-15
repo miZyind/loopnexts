@@ -1,34 +1,33 @@
 // Node module
 import React from 'react';
 import { render } from 'react-dom';
-import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 import { hot } from 'react-hot-loader';
-import { whyDidYouUpdate } from 'why-did-you-update';
-import { registerObserver } from 'react-perf-devtool';
+import { createStore, compose } from 'redux';
 // Reducer
 import rootReducer from '@reducers/index';
 // Style
 import 'semantic-ui-css/semantic.min.css';
 // Container
 import App from '@containers/app';
+
 // Env
 const isDev = process.env.NODE_ENV !== 'production';
 const name = process.env.APP_NAME!;
 const version = process.env.APP_VERSION!;
-// Devtool
+
+/* tslint:disable:no-var-requires */
+// Devtools
 if (isDev) {
-  // React Performance Devtool
-  registerObserver();
-  // Why Did You Update Devtool
-  whyDidYouUpdate(React);
+  require('react-perf-devtool').registerObserver(); // React Performance Devtool
+  // require('why-did-you-update').whyDidYouUpdate(React); // Why Did You Update Devtool
 }
-const reduxDevtoolEnhancer = isDev
-  ? window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-  : undefined;
-const Component = isDev ? App : hot(module)(App);
+/* tslint:enable:no-var-requires */
+
 // Store
-const store = createStore(rootReducer, reduxDevtoolEnhancer);
+const composeEnhancers = isDev ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ : compose;
+const store = createStore(rootReducer, composeEnhancers());
+const Component = isDev ? hot(module)(App) : App;
 
 render(
   <Provider store={store}>

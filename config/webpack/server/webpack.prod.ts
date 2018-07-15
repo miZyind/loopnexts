@@ -1,5 +1,6 @@
 // Node module
 import webpack from 'webpack';
+import ProgressBarPlugin from 'progress-bar-webpack-plugin';
 // Config
 import baseConfig from './webpack.base';
 
@@ -8,7 +9,7 @@ const prodConfig: webpack.Configuration = {
   mode: 'production',
   plugins: [
     ...baseConfig.plugins!,
-    new webpack.ProgressPlugin()
+    new ProgressBarPlugin()
   ]
 };
 

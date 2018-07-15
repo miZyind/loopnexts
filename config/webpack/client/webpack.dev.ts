@@ -11,6 +11,14 @@ const devConfig: webpack.Configuration = {
     rules: [
       ...baseConfig.module!.rules,
       {
+        test: [/\.bmp$/, /\.gif$/, /\.jpe?g$/, /\.png$/, /\.svg$/],
+        use: 'file-loader?name=assets/images/[name].[hash:6].[ext]'
+      },
+      {
+        test: /\.(ico|eot|otf|webp|ttf|woff|woff2)$/i,
+        use: 'file-loader?name=assets/fonts/[name].[hash:6].[ext]'
+      },
+      {
         test: /\.css$/,
         use: [
           'style-loader',
@@ -36,7 +44,7 @@ const devConfig: webpack.Configuration = {
         ]
       }
     ]
-  },
+  }
 };
 
 export default devConfig;

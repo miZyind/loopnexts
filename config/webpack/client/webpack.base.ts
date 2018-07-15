@@ -15,8 +15,11 @@ const baseConfig: webpack.Configuration = {
       '@components': paths.resolveApp('src/client/components'),
       '@containers': paths.resolveApp('src/client/containers'),
       '@helpers': paths.resolveApp('src/client/helpers'),
+      '@models': paths.resolveApp('src/client/models'),
       '@reducers': paths.resolveApp('src/client/reducers'),
       '@routes': paths.resolveApp('src/client/routes'),
+      '@styles': paths.resolveApp('src/client/styles'),
+      '@assets': paths.resolveApp('src/client/assets'),
       '#lib': paths.resolveApp('src/lib')
     },
     modules: ['node_modules', paths.nodeModules],
@@ -34,14 +37,6 @@ const baseConfig: webpack.Configuration = {
             compilerOptions: { target: 'es6', module: 'esnext' }
           }
         }
-      },
-      {
-        test: [/\.bmp$/, /\.gif$/, /\.jpe?g$/, /\.png$/, /\.svg$/],
-        use: 'url-loader?limit=4096&name=assets/images/[name].[hash:6].[ext]'
-      },
-      {
-        test: /\.(ico|eot|otf|webp|ttf|woff|woff2)$/i,
-        use: 'file-loader?limit=100000&name=assets/fonts/[name].[hash:6].[ext]'
       }
     ]
   },

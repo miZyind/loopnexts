@@ -10,7 +10,7 @@ const baseConfig: webpack.Configuration = {
   target: 'node',
   entry: paths.server,
   output: {
-    path: paths.dist,
+    path: paths.build,
     filename: 'index.js'
   },
   resolve: {
@@ -43,7 +43,7 @@ const baseConfig: webpack.Configuration = {
       'process.env.APP_HOST': JSON.stringify(env.connection.host),
       'process.env.APP_PORT': JSON.stringify(env.connection.port),
       'process.env.APP_PATH': JSON.stringify(env.connection.path),
-      'process.env.APP_DIST': JSON.stringify(paths.dist)
+      'process.env.APP_BUILD': JSON.stringify(paths.build)
     })
   ],
   externals: [nodeExternals()]

@@ -1,7 +1,7 @@
 {
   "name": "loopnexts",
   "version": "3.0.0",
-  "description": "Isomorphic React application boilerplate.",
+  "description": "Isomorphic React scraffolding.",
   "repository": "git@github.com:miZyind/loopnexts.git",
   "author": "miZyind <mizyind@gmail.com>",
   "license": "MIT",

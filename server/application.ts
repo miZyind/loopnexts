@@ -1,20 +1,23 @@
+// Node module
 import { BootMixin } from '@loopback/boot';
-import { ApplicationConfig } from '@loopback/core';
+import { RestApplication } from '@loopback/rest';
+import { RepositoryMixin } from '@loopback/repository';
+import { ServiceMixin } from '@loopback/service-proxy';
 import {
   RestExplorerBindings,
   RestExplorerComponent,
 } from '@loopback/rest-explorer';
-import { RepositoryMixin } from '@loopback/repository';
-import { RestApplication } from '@loopback/rest';
-import { ServiceMixin } from '@loopback/service-proxy';
-import * as path from 'path';
+// Common
+import { loopbackConfig } from '#common/config';
+// Server
 import { MySequence } from './sequence';
+import * as path from 'path';
 
 export class Loopnexts extends BootMixin(
   ServiceMixin(RepositoryMixin(RestApplication)),
 ) {
-  constructor(options: ApplicationConfig) {
-    super(options);
+  constructor() {
+    super(loopbackConfig);
 
     // Set up the custom sequence
     this.sequence(MySequence);

@@ -1,3 +1,4 @@
+// Node module
 import { inject } from '@loopback/context';
 import {
   FindRoute,
@@ -21,7 +22,7 @@ export class MySequence implements SequenceHandler {
     @inject(SequenceActions.REJECT) public reject: Reject,
   ) {}
 
-  async handle(context: RequestContext) {
+  public async handle(context: RequestContext) {
     try {
       const { request, response } = context;
       const route = this.findRoute(request);

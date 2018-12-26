@@ -2,12 +2,11 @@
 import { RestBindings } from '@loopback/rest';
 // Common
 import logger from '#common/logger';
-import { loopbackConfig } from '#common/config';
 // Server
 import { Loopnexts } from './application';
 
 async function main() {
-  const app = new Loopnexts(loopbackConfig);
+  const app = new Loopnexts();
   await app.boot();
   await app.start();
 

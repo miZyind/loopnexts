@@ -1,8 +1,8 @@
-import config from '#common/config';
+import { loopbackConfig } from '#common/config';
 import { Loopnexts } from './application';
 
 async function main() {
-  const app = new Loopnexts(config);
+  const app = new Loopnexts(loopbackConfig);
   await app.boot();
   await app.start();
 

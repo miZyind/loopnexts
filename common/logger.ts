@@ -2,11 +2,19 @@
 import pino from 'pino';
 import chalk from 'chalk';
 
+interface ILevels {
+  [key: number]: string,
+  default: string
+}
+
+interface IColors {
+  [key: number]: typeof chalk,
+  default: typeof chalk
+}
+
 const colorize = (value: number) => {
-  type Levels = { [key: number]: string, default: string };
-  const levels: Levels = { 20: 'DEBUG', 30: 'INFO', 40: 'WARN', 50: 'ERROR', default: 'USERLVL' };
-  type Colors = { [key: number]: typeof chalk, default: typeof chalk };
-  const colors: Colors = { 20: chalk.blue, 30: chalk.green, 40: chalk.yellow, 50: chalk.red, default: chalk.white };
+  const levels: ILevels = { 20: 'DEBUG', 30: 'INFO', 40: 'WARN', 50: 'ERROR', default: 'USERLVL' };
+  const colors: IColors = { 20: chalk.blue, 30: chalk.green, 40: chalk.yellow, 50: chalk.red, default: chalk.white };
   return colors.hasOwnProperty(value) ? colors[value](levels[value]) as string : colors.default(levels.default);
 };
 

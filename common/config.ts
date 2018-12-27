@@ -2,10 +2,8 @@
 import 'dotenv/config';
 // Node module
 import path from 'path';
-// tslint:disable-next-line:ordered-imports
 import withCSS from '@zeit/next-css';
 import WithTypescript from '@zeit/next-typescript';
-import withOptimizedImages from 'next-optimized-images';
 import { ApplicationConfig } from '@loopback/core';
 // Definition
 import { ServerOptions } from 'next-server';
@@ -37,32 +35,26 @@ const nextConfig: ServerOptions = {
   dir: path.resolve(process.cwd(), 'client'),
   quiet: true,
   conf: withCSS(
-    WithTypescript(
-      withOptimizedImages({
-        publicRuntimeConfig: { name, version },
-        webpack(config) {
-          config.module!.rules.push({
-            test: /\.(png|svg|eot|otf|ttf|woff|woff2)$/i,
-            use: {
-              loader: 'file-loader',
-              options: {
-                limit: 8192,
-                publicPath: './',
-                outputPath: 'static/css/',
-                name: '[name].[ext]',
-              },
+    WithTypescript({
+      publicRuntimeConfig: { name, version },
+      webpack(config) {
+        config.module!.rules.push({
+          test: /\.(png|svg|eot|otf|ttf|woff|woff2)$/i,
+          use: {
+            loader: 'file-loader',
+            options: {
+              limit: 8192,
+              publicPath: './',
+              outputPath: 'static/css/',
+              name: '[name].[ext]',
             },
-          });
+          },
+        });
 
-          return config;
-        },
-      }),
-    ),
+        return config;
+      },
+    }),
   ),
 };
 
-export {
-  isDev,
-  loopbackConfig,
-  nextConfig,
-};
+export { isDev, loopbackConfig, nextConfig };

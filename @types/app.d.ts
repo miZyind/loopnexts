@@ -1,7 +1,6 @@
 // Next plugin
 declare module '@zeit/next-css';
-declare module '@zeit/next-typescript';
-declare module 'next-optimized-images' {
+declare module '@zeit/next-typescript' {
   import { Configuration } from 'webpack';
   import { NextConfig } from 'next-server/next-config';
   interface Config extends NextConfig {

@@ -25,7 +25,7 @@ const PING_RESPONSE: ResponseObject = {
   },
 };
 
-export class PingController {
+export default class PingController {
   constructor(@inject(RestBindings.Http.REQUEST) private req: Request) {}
 
   @get('/ping', { responses: { '200': PING_RESPONSE } })

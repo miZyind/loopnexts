@@ -1,24 +1,18 @@
 // Common
 import logger from '#common/logger';
 // Server
-import { Loopnexts } from './application';
+import App from './application';
 
 async function main() {
-  const app = new Loopnexts();
-
-  await app.boot();
-  await app.start();
-
-  const { url } = app.restServer;
-  const mode = process.env.NODE_ENV;
-
-  logger.info(`Server is running at ${url} with ${mode} mode`);
-  logger.info(`Try ${url}/ping`);
-
-  return app;
+  const app = new App();
+  try {
+    await app.boot();
+    await app.start();
+  } catch (error) {
+    logger.error(error);
+    await app.stop();
+    process.exit(1);
+  }
 }
 
-main().catch((err) => {
-  logger.error(err);
-  process.exit(1);
-});
+main();

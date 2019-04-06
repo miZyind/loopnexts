@@ -21,7 +21,7 @@ const colorize = (value: number) => {
 const logger = pino({
   prettyPrint: true,
   prettifier: () => ({ pid, hostname, name, level, time, v, ...value }) => {
-    let line = `[${new Date(time).toLocaleString()}] ${colorize(level)}: `;
+    let line = `[${new Date(time).toISOString()}] ${colorize(level)}: `;
     if (value.type === 'Error') {
       line += `\n${chalk.bgRed(value.stack)}`;
     } else if (value.msg) {

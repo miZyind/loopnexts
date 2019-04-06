@@ -1,5 +1,6 @@
 // Node module
 import React from 'react';
+import getConfig from 'next/config';
 import { ServerStyleSheet } from 'styled-components';
 import Document, {
   Head,
@@ -11,6 +12,8 @@ import Document, {
 interface IProps {
   styleTags: Array<React.ReactElement<{}>>;
 }
+
+const { basePath, baseAssetsPath } = getConfig().publicRuntimeConfig;
 
 export default class extends Document<IProps> {
   public static async getInitialProps(ctx: NextDocumentContext) {
@@ -26,14 +29,22 @@ export default class extends Document<IProps> {
   }
 
   public render() {
+    /**
+     * basePath('/') + baseAssetsPath('/assets') = '/assets/'
+     * basePath('/app') + baseAssetsPath('/assets') = '/app/assets/'
+     */
+    const resolvedPath =
+      basePath === '/' ? `${baseAssetsPath}/` : `${basePath}${baseAssetsPath}/`;
     return (
       <html>
         <Head>
+          <base href={resolvedPath} />
           <meta content='IE=edge,chrome=1' />
           <meta
             name='viewport'
             content='width=device-width,initial-scale=1,shrink-to-fit=no'
           />
+          <link rel='icon' type='image/x-icon' href='favicon.ico' />
           <link type='text/css' href='/_next/static/styles.css' />
           {this.props.styleTags}
         </Head>

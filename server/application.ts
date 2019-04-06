@@ -14,6 +14,8 @@ import {
   appName,
   appVersion,
   isDev,
+  baseAssetsPath,
+  folderPaths,
   loopbackConfig,
   nextConfig,
 } from '#common/config';
@@ -28,8 +30,10 @@ export default class App extends Application {
 
   constructor() {
     super(loopbackConfig);
+    // Setup static files
+    this.static(baseAssetsPath, folderPaths.assets);
     // Setup bootstrapper
-    this.projectRoot = __dirname;
+    this.projectRoot = folderPaths.server;
     this.bootOptions = {
       controllers: {
         dirs: ['controllers'],

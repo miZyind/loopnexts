@@ -1,7 +1,7 @@
 // Dotenv
 import 'dotenv/config';
 // Node module
-import path from 'path';
+import { resolve } from 'path';
 import withCSS from '@zeit/next-css';
 import WithTypescript from '@zeit/next-typescript';
 import { ApplicationConfig } from '@loopback/core';
@@ -9,6 +9,12 @@ import { ApplicationConfig } from '@loopback/core';
 import { ServerOptions } from 'next-server';
 
 const isDev = process.env.NODE_ENV === 'development';
+const resolvePath = (path: string) => resolve(process.cwd(), path);
+const folderPaths = {
+  assets: resolvePath('assets'),
+  client: resolvePath('client'),
+  server: resolvePath('server'),
+};
 const {
   NAME: appName,
   VERSION: appVersion,
@@ -16,8 +22,8 @@ const {
   HOST: host,
   PORT: port,
   BASE_PATH: basePath,
+  BASE_ASSETS_PATH: baseAssetsPath,
 } = process.env;
-
 const loopbackConfig: ApplicationConfig = {
   rest: {
     port,
@@ -29,14 +35,14 @@ const loopbackConfig: ApplicationConfig = {
     },
   },
 };
-
 const nextConfig: ServerOptions = {
   dev: isDev,
-  dir: path.resolve(process.cwd(), 'client'),
+  dir: folderPaths.client,
   quiet: true,
   conf: withCSS(
     WithTypescript({
-      publicRuntimeConfig: { appName, appVersion, basePath },
+      assetPrefix: basePath,
+      publicRuntimeConfig: { appName, appVersion, basePath, baseAssetsPath },
       webpack(config) {
         config.module!.rules.push({
           test: /\.(png|svg|eot|otf|ttf|woff|woff2)$/i,
@@ -57,4 +63,12 @@ const nextConfig: ServerOptions = {
   ),
 };
 
-export { appName, appVersion, isDev, loopbackConfig, nextConfig };
+export {
+  appName,
+  appVersion,
+  isDev,
+  baseAssetsPath,
+  folderPaths,
+  loopbackConfig,
+  nextConfig,
+};

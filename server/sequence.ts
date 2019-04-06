@@ -13,8 +13,9 @@ export default class Sequence extends DefaultSequence {
 
   public async handle(context: RequestContext) {
     const { request, response } = context;
-    // Handle next server
-    if (!request.url.startsWith('/api')) {
+    // Handle front-end
+    if (!request.url.startsWith('/api') && !request.url.startsWith('/assets')) {
+      // Handle next server
       const handle = routes.getRequestHandler(this.nextInstance);
       return handle(request, response);
     }

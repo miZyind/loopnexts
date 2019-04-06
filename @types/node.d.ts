@@ -1,12 +1,12 @@
 declare namespace NodeJS {
   interface ProcessEnv {
-    [key: string]: string | undefined;
-    NODE_ENV: string | undefined;
-    APP_NAME: string;
-    APP_VERSION: string;
-    APP_PROTOCOL: string;
-    APP_HOST: string;
-    APP_PORT: string;
-    APP_PATH: string;
+    NODE_ENV: string;
+    NAME: string;
+    VERSION: string;
+    PROTOCOL: string;
+    HOST: string;
+    PORT: string;
+    BASE_PATH: string;
+    BASE_ASSETS_PATH: string;
   }
 }

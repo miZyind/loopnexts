@@ -10,7 +10,13 @@ import { RepositoryMixin } from '@loopback/repository';
 import { ServiceMixin } from '@loopback/service-proxy';
 // Common
 import logger from '#common/logger';
-import { name, isDev, loopbackConfig, nextConfig } from '#common/config';
+import {
+  appName,
+  appVersion,
+  isDev,
+  loopbackConfig,
+  nextConfig,
+} from '#common/config';
 // Server
 import Sequence from './sequence';
 import { AppBindings } from './keys';
@@ -42,11 +48,13 @@ export default class App extends Application {
   public async start() {
     await super.start();
     await this.nextServer.prepare();
-    logger.info(`${name} is running at ${this.restServer.url}`);
+    logger.info(
+      `${appName} v${appVersion} is running at ${this.restServer.url}`,
+    );
   }
 
   public async stop() {
-    logger.info(`${name} is shutting down...`);
+    logger.info(`${appName} v${appVersion} is shutting down...`);
     await this.nextServer.close();
     await super.stop();
   }

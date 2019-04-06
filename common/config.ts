@@ -10,8 +10,8 @@ import { ServerOptions } from 'next-server';
 
 const isDev = process.env.NODE_ENV === 'development';
 const {
-  NAME: name,
-  VERSION: version,
+  NAME: appName,
+  VERSION: appVersion,
   PROTOCOL: protocol,
   HOST: host,
   PORT: port,
@@ -36,7 +36,7 @@ const nextConfig: ServerOptions = {
   quiet: true,
   conf: withCSS(
     WithTypescript({
-      publicRuntimeConfig: { name, version, basePath },
+      publicRuntimeConfig: { appName, appVersion, basePath },
       webpack(config) {
         config.module!.rules.push({
           test: /\.(png|svg|eot|otf|ttf|woff|woff2)$/i,
@@ -57,4 +57,4 @@ const nextConfig: ServerOptions = {
   ),
 };
 
-export { name, isDev, loopbackConfig, nextConfig };
+export { appName, appVersion, isDev, loopbackConfig, nextConfig };

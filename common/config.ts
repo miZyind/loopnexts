@@ -8,7 +8,7 @@ import { ApplicationConfig } from '@loopback/core';
 // Definition
 import { ServerOptions } from 'next-server';
 
-const isDev = process.env.NODE_ENV !== 'production';
+const isDev = process.env.NODE_ENV === 'development';
 const {
   NAME: name,
   VERSION: version,
@@ -36,7 +36,7 @@ const nextConfig: ServerOptions = {
   quiet: true,
   conf: withCSS(
     WithTypescript({
-      publicRuntimeConfig: { name, version },
+      publicRuntimeConfig: { name, version, basePath },
       webpack(config) {
         config.module!.rules.push({
           test: /\.(png|svg|eot|otf|ttf|woff|woff2)$/i,

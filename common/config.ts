@@ -57,4 +57,4 @@ const nextConfig: ServerOptions = {
   ),
 };
 
-export { isDev, loopbackConfig, nextConfig };
+export { name, isDev, loopbackConfig, nextConfig };

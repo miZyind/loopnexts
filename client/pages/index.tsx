@@ -2,7 +2,16 @@
 import React from 'react';
 import getConfig from 'next/config';
 import styled from 'styled-components';
-import { Container, Grid, Transition, Dimmer, Loader, Header, Image, Step } from 'semantic-ui-react';
+import {
+  Container,
+  Grid,
+  Transition,
+  Dimmer,
+  Loader,
+  Header,
+  Image,
+  Step,
+} from 'semantic-ui-react';
 // Style
 import 'semantic-ui-css/semantic.min.css';
 
@@ -21,7 +30,7 @@ class Index extends React.Component<IProps, IState> {
     super(props);
 
     this.state = {
-      isLoading: true
+      isLoading: true,
     };
   }
 

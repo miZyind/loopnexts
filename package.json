@@ -26,6 +26,7 @@
   },
   "prettier": {
     "singleQuote": true,
+    "jsxSingleQuote": true,
     "trailingComma": "all",
     "arrowParens": "always",
     "endOfLine": "lf"

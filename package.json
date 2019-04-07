@@ -8,8 +8,8 @@
   "scripts": {
     "start": "ts-node -T server/index.ts",
     "serve": "node .",
-    "build": "rimraf dist && tsc && yarn build:client",
-    "build:client": "rimraf client/.next && cpx client/**/* dist/client && next build dist/client",
+    "build": "rimraf app && tsc && cpx assets/**/* app/assets && yarn build:client",
+    "build:client": "rimraf client/.next && cpx client/**/* app/client && next build app/client && rimraf app/client/next.config.ts",
     "lint": "tslint --project .",
     "lint:fix": "tslint --project . --fix"
   },

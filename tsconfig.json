@@ -4,7 +4,7 @@
     "target": "esnext",
     "module": "commonjs",
     "sourceMap": true,
-    "outDir": "dist",
+    "outDir": "app",
     /* Strict Type-Checking Options */
     "strict": true,
     "skipLibCheck": true,
@@ -20,12 +20,12 @@
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
     "resolveJsonModule": true,
-    "typeRoots": ["node_modules/@types", "@types"],
+    "typeRoots": ["node_modules/@types", "typings"],
     /* Experimental Options */
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
     /* Plugins */
     "plugins": [{ "name": "typescript-styled-plugin" }]
   },
-  "include": ["@types", "client/next.config.ts", "common", "server"]
+  "include": ["typings", "client/next.config.ts", "common", "server"]
 }

@@ -43,9 +43,6 @@ build/Release
 node_modules
 jspm_packages
 
-# Typescript v1 declaration files
-typings
-
 # Optional npm cache directory
 .npm
 package-lock.json
@@ -69,4 +66,4 @@ package-lock.json
 api-docs
 
 # Transpiled JavaScript files from Typescript
-dist
+app

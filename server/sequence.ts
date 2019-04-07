@@ -3,7 +3,7 @@ import { Server } from 'next';
 import { inject } from '@loopback/context';
 import { RequestContext, DefaultSequence } from '@loopback/rest';
 // Common
-import routes from '#common/routes';
+import routes from '../common/routes';
 // Server
 import { AppBindings } from './keys';
 

@@ -9,7 +9,7 @@ import { RestApplication } from '@loopback/rest';
 import { RepositoryMixin } from '@loopback/repository';
 import { ServiceMixin } from '@loopback/service-proxy';
 // Common
-import logger from '#common/logger';
+import logger from '../common/logger';
 import {
   appName,
   appVersion,
@@ -18,7 +18,7 @@ import {
   folderPaths,
   loopbackConfig,
   nextConfig,
-} from '#common/config';
+} from '../common/config';
 // Server
 import Sequence from './sequence';
 import { AppBindings } from './keys';

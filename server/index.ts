@@ -1,5 +1,5 @@
 // Common
-import logger from '#common/logger';
+import logger from '../common/logger';
 // Server
 import App from './application';
 

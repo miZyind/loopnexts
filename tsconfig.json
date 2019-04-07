@@ -18,9 +18,6 @@
     /* Module Resolution Options */
     "moduleResolution": "node",
     "baseUrl": ".",
-    "paths": {
-      "#common/*": ["common/*"]
-    },
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
     "resolveJsonModule": true,

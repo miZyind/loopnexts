@@ -14,7 +14,6 @@ import {
   appName,
   appVersion,
   isDev,
-  baseAssetsPath,
   folderPaths,
   loopbackConfig,
   nextConfig,
@@ -30,8 +29,6 @@ export default class App extends Application {
 
   constructor() {
     super(loopbackConfig);
-    // Setup static files
-    this.static(baseAssetsPath, folderPaths.assets);
     // Setup bootstrapper
     this.projectRoot = folderPaths.server;
     this.bootOptions = {
@@ -43,7 +40,6 @@ export default class App extends Application {
     // Setup rest explorer
     this.component(RestExplorerComponent);
     this.bind(AppBindings.BASE_API_PATH).to('/api');
-    this.bind(AppBindings.BASE_ASSETS_PATH).to(baseAssetsPath);
     this.bind(RestExplorerBindings.CONFIG).to({ path: '/explorer' });
     // Setup next Server
     this.bind(AppBindings.NEXT_SERVER).to(this.nextServer);

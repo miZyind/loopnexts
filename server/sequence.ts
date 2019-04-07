@@ -12,16 +12,11 @@ export default class Sequence extends DefaultSequence {
   private nextServer!: Server;
   @inject(AppBindings.BASE_API_PATH)
   private baseApiPath!: string;
-  @inject(AppBindings.BASE_ASSETS_PATH)
-  private baseAssetsPath!: string;
 
   public async handle(context: RequestContext) {
     const { request, response } = context;
     // Handle next server
-    if (
-      !request.url.startsWith(this.baseApiPath) &&
-      !request.url.startsWith(this.baseAssetsPath)
-    ) {
+    if (!request.url.startsWith(this.baseApiPath)) {
       const handle = routes.getRequestHandler(this.nextServer);
       return handle(request, response);
     }

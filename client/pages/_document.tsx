@@ -13,7 +13,7 @@ interface IProps {
   styleTags: Array<React.ReactElement<{}>>;
 }
 
-const { basePath, baseAssetsPath } = getConfig().publicRuntimeConfig;
+const { basePath } = getConfig().publicRuntimeConfig;
 
 export default class extends Document<IProps> {
   public static async getInitialProps(ctx: NextDocumentContext) {
@@ -29,23 +29,16 @@ export default class extends Document<IProps> {
   }
 
   public render() {
-    /**
-     * basePath('/') + baseAssetsPath('/assets') = '/assets/'
-     * basePath('/app') + baseAssetsPath('/assets') = '/app/assets/'
-     */
-    const resolvedPath =
-      basePath === '/' ? `${baseAssetsPath}/` : `${basePath}${baseAssetsPath}/`;
     return (
       <html>
         <Head>
-          <base href={resolvedPath} />
+          <base href={basePath} />
           <meta content='IE=edge,chrome=1' />
           <meta
             name='viewport'
             content='width=device-width,initial-scale=1,shrink-to-fit=no'
           />
-          <link rel='icon' href='favicon.ico' />
-          <link type='text/css' href='/_next/static/styles.css' />
+          <link rel='icon' href='static/favicon.ico' />
           {this.props.styleTags}
         </Head>
         <body>

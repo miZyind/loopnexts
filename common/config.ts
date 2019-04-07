@@ -9,9 +9,8 @@ import { ApplicationConfig } from '@loopback/core';
 import { ServerOptions } from 'next-server';
 
 const isDev = process.env.NODE_ENV === 'development';
-const resolvePath = (path: string) => resolve(process.cwd(), path);
+const resolvePath = (path: string) => resolve(__dirname, '..', path);
 const folderPaths = {
-  assets: resolvePath('assets'),
   client: resolvePath('client'),
   server: resolvePath('server'),
 };
@@ -22,7 +21,6 @@ const {
   HOST: host,
   PORT: port,
   BASE_PATH: basePath,
-  BASE_ASSETS_PATH: baseAssetsPath,
 } = process.env;
 const loopbackConfig: ApplicationConfig = {
   rest: {
@@ -42,7 +40,7 @@ const nextConfig: ServerOptions = {
   conf: withCSS(
     WithTypescript({
       assetPrefix: basePath,
-      publicRuntimeConfig: { appName, appVersion, basePath, baseAssetsPath },
+      publicRuntimeConfig: { appName, appVersion, basePath },
       webpack(config) {
         config.module!.rules.push({
           test: /\.(png|svg|eot|otf|ttf|woff|woff2)$/i,
@@ -63,12 +61,4 @@ const nextConfig: ServerOptions = {
   ),
 };
 
-export {
-  appName,
-  appVersion,
-  isDev,
-  baseAssetsPath,
-  folderPaths,
-  loopbackConfig,
-  nextConfig,
-};
+export { appName, appVersion, isDev, folderPaths, loopbackConfig, nextConfig };

@@ -59,7 +59,7 @@ class Index extends React.Component<IProps, IState> {
         >
           <Grid.Column>
             <Header as='h1' icon textAlign='center'>
-              <Image centered size='large' src='favicon.ico' />
+              <Image centered size='large' src='static/favicon.ico' />
               <Header.Content>{`${appName} v${appVersion}`}</Header.Content>
             </Header>
             <Step.Group ordered>

@@ -29,16 +29,17 @@ export default class extends Document<IProps> {
   }
 
   public render() {
+    const resolvedBasePath = basePath === '/' ? basePath : `${basePath}/`;
     return (
       <html>
         <Head>
-          <base href={basePath} />
+          <base href={resolvedBasePath} />
           <meta content='IE=edge,chrome=1' />
           <meta
             name='viewport'
             content='width=device-width,initial-scale=1,shrink-to-fit=no'
           />
-          <link rel='icon' href='static/favicon.ico' />
+          <link rel='icon' type='image/x-icon' href='static/favicon.ico' />
           {this.props.styleTags}
         </Head>
         <body>

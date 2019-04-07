@@ -6,8 +6,8 @@
   "author": "miZyind <mizyind@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "start": "ts-node -T server/index.ts",
-    "serve": "node .",
+    "dev": "ts-node -T server",
+    "start": "cd app && node server",
     "build": "yarn build:rmrf && yarn build:core && yarn build:next",
     "build:rmrf": "rimraf app && rimraf client/.next",
     "build:core": "tsc && cpy .env.production app --rename .env",

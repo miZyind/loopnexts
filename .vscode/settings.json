@@ -11,8 +11,7 @@
     "**/.svn": true,
     "**/CVS": true,
     "**/node_modules": true,
-    ".vscode": true,
-    "dist": true
+    ".vscode": true
   },
   "files.insertFinalNewline": true,
   "files.trimTrailingWhitespace": true,

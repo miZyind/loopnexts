@@ -3,7 +3,6 @@
     /* Basic Options */
     "target": "esnext",
     "module": "commonjs",
-    "jsx": "react",
     "sourceMap": true,
     "outDir": "dist",
     /* Strict Type-Checking Options */
@@ -27,5 +26,6 @@
     "emitDecoratorMetadata": true,
     /* Plugins */
     "plugins": [{ "name": "typescript-styled-plugin" }]
-  }
+  },
+  "include": ["@types", "client/next.config.ts", "common", "server"]
 }

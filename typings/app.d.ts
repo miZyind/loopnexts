@@ -1,12 +1,10 @@
-// Webpack plugin
-declare module '*webpack-plugin';
-declare module 'webpack-node-externals';
-// Other
-declare module 'react-perf-devtool';
-// Asset
-declare module '@assets/*'
-// Redux DevTools
-interface Window {
-  __REDUX_DEVTOOLS_EXTENSION__: any;
-  __REDUX_DEVTOOLS_EXTENSION_COMPOSE__: any;
+// Next plugin
+declare module '@zeit/next-css';
+declare module '@zeit/next-typescript' {
+  import { Configuration } from 'webpack';
+  import { NextConfig } from 'next-server/next-config';
+  interface Config extends NextConfig {
+    webpack: (config: Configuration) => Configuration;
+  }
+  export default (config: Config) => Configuration;
 }

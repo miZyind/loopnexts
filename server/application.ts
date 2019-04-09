@@ -37,6 +37,9 @@ export default class App extends Application {
         extensions: [isDev ? '.controller.ts' : '.controller.js'],
       },
     };
+    // Setup app information
+    this.bind(AppBindings.NAME).to(appName);
+    this.bind(AppBindings.VERSION).to(appVersion);
     // Setup rest explorer
     this.component(RestExplorerComponent);
     this.bind(AppBindings.BASE_API_PATH).to('/api');

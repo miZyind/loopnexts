@@ -16,12 +16,12 @@
 #### 🌁 Frontend
 
 - **[NextJS](https://nextjs.org)** - A lightweight framework for static and server‑rendered React applications.
+  - **[next-routes](https://github.com/fridays/next-routes)** - Easy to use universal dynamic routes for NextJS.
 - **[React](https://reactjs.org)** - Declarative, efficient, and flexible JavaScript library for building user interfaces.
   - **[react-perf-devtool](https://github.com/nitin42/react-perf-devtool)** - A browser devtool to inspect performance of React components.
   - **[why-did-you-update](https://github.com/maicki/why-did-you-update)** - Puts your console on blast when React is making unnecessary updates.
   - **[React Redux](https://github.com/reactjs/react-redux)** - Official React bindings for Redux.
 - **[Semantic UI React](https://react.semantic-ui.com)** - UI component framework based around useful principles from natural language.
-- **[PostCSS](http://postcss.org)** - Tool for transforming CSS with JavaScript.
 - **[Styled Components](https://www.styled-components.com)** - Visual primitives for the component age.
 
 #### 🌌 Isomorphic

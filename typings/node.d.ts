@@ -7,6 +7,5 @@ declare namespace NodeJS {
     HOST: string;
     PORT: string;
     BASE_PATH: string;
-    BASE_ASSETS_PATH: string;
   }
 }

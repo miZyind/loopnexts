@@ -5,7 +5,7 @@
 [![Language](https://img.shields.io/badge/Language-TypeScript-blue.svg?style=flat-square)](https://www.typescriptlang.org)
 [![Style](https://img.shields.io/badge/Style-Semantic_UI-yellowgreen.svg?style=flat-square)](https://semantic-ui.com)
 
-#### LoopBack + NextJS + TypeScript + SemanticUI = LoopNexTS
+**LoopBack + NextJS + TypeScript + SemanticUI = LoopNexTS**
 
 ## Technical features
 
@@ -26,6 +26,8 @@
 
 #### 🌌 Isomorphic
 
+- **[Dotenv](https://github.com/motdotla/dotenv)** - Loads environment variables from .env for NodeJS projects.
+- **[Chalk](https://github.com/chalk/chalk)** - Terminal string styling done right.
 - **[Pino](https://getpino.io)** - Super fast, all natural json logger.
 - **[Redux](https://github.com/reactjs/redux)** - Predictable state container for JavaScript apps.
   - **[redux-devtools-extension](https://github.com/zalmoxisus/redux-devtools-extension)** - Redux DevTools extension.
@@ -34,10 +36,11 @@
 - **[Isomorphic Fetch](https://github.com/matthew-andrews/isomorphic-fetch)** - Isomorphic WHATWG Fetch API, for Node & Browserify.
 - **[Lodash Decorators](https://steelsojka.github.io/lodash-decorators)** - A collection of decorators using lodash at it's core.
 - **[TypeScript](https://www.typescriptlang.org)** - Typed superset of JavaScript that compiles to plain JavaScript.
+  - **[ts-node](https://github.com/TypeStrong/ts-node)** - TypeScript execution and REPL for NodeJS.
+  - **[typescript-styled-plugin](https://github.com/Microsoft/typescript-styled-plugin)** - TypeScript server plugin that adds intellisense to styled component css strings.
   - **[TSLint](https://palantir.github.io/tslint)** - An extensible linter for the TypeScript language.
     - **[tslint-react](https://github.com/palantir/tslint-react)** - Lint rules related to React & JSX for TSLint.
     - **[tslint-config-prettier](https://github.com/prettier/tslint-config-prettier)** - Use tslint with prettier without any conflict.
-  - **[typescript-styled-plugin](https://github.com/Microsoft/typescript-styled-plugin)** - TypeScript server plugin that adds intellisense to styled component css strings.
 - **[Prettier](https://prettier.io)** - An opinionated code formatter.
 
 ## Author

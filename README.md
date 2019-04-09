@@ -5,11 +5,7 @@
 [![Language](https://img.shields.io/badge/Language-TypeScript-blue.svg?style=flat-square)](https://www.typescriptlang.org)
 [![Style](https://img.shields.io/badge/Style-Semantic_UI-yellowgreen.svg?style=flat-square)](https://semantic-ui.com)
 
----
-
-## LoopBack + NextJS + TypeScript + SemanticUI = LoopNexTS
-
----
+#### LoopBack + NextJS + TypeScript + SemanticUI = LoopNexTS
 
 ## Technical features
 

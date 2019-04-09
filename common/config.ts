@@ -2,9 +2,13 @@
 import 'dotenv/config';
 // Node module
 import { resolve } from 'path';
-import withCSS from '@zeit/next-css';
-import WithTypescript from '@zeit/next-typescript';
 import { ApplicationConfig } from '@loopback/core';
+// Next plugin
+import fonts from 'next-fonts';
+import css from '@zeit/next-css';
+import composer from 'next-composer';
+import typescript from '@zeit/next-typescript';
+import optimizedImages from 'next-optimized-images';
 // Definition
 import { ServerOptions } from 'next-server';
 
@@ -37,28 +41,9 @@ const nextConfig: ServerOptions = {
   dev: isDev,
   dir: folderPaths.client,
   quiet: true,
-  conf: withCSS(
-    WithTypescript({
-      assetPrefix: basePath,
-      publicRuntimeConfig: { appName, appVersion, basePath },
-      webpack(config) {
-        config.module!.rules.push({
-          test: /\.(png|svg|eot|otf|ttf|woff|woff2)$/i,
-          use: {
-            loader: 'file-loader',
-            options: {
-              limit: 8192,
-              publicPath: './',
-              outputPath: 'static/css/',
-              name: '[name].[ext]',
-            },
-          },
-        });
-
-        return config;
-      },
-    }),
-  ),
+  conf: composer([css, fonts, optimizedImages, typescript], {
+    assetPrefix: basePath,
+    publicRuntimeConfig: { appName, appVersion, basePath },
+  }),
 };
-
 export { appName, appVersion, isDev, folderPaths, loopbackConfig, nextConfig };

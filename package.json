@@ -1,7 +1,7 @@
 {
   "name": "loopnexts",
   "version": "3.0.0",
-  "description": "Loopback 4 + NextJS 8 + TypeScript 3 + React 16 + SemanticUI 2",
+  "description": "LoopBack + NextJS + TypeScript + SemanticUI = LoopNexTS",
   "repository": "git@github.com:miZyind/loopnexts.git",
   "author": "miZyind <mizyind@gmail.com>",
   "license": "MIT",

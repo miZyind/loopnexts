@@ -3,7 +3,6 @@
     /* Basic Options */
     "target": "esnext",
     "module": "commonjs",
-    "sourceMap": true,
     "outDir": "app",
     /* Strict Type-Checking Options */
     "strict": true,
@@ -21,11 +20,12 @@
     "esModuleInterop": true,
     "resolveJsonModule": true,
     "typeRoots": ["node_modules/@types", "typings"],
+    "importHelpers": true,
     /* Experimental Options */
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
     /* Plugins */
     "plugins": [{ "name": "typescript-styled-plugin" }]
   },
-  "include": ["typings", "client/next.config.ts", "common", "server"]
+  "include": ["client", "common", "server", "typings"]
 }

@@ -10,7 +10,7 @@
     "start": "cd app && node server",
     "build": "yarn build:rmrf && yarn build:core && yarn build:next",
     "build:rmrf": "rimraf app && rimraf client/.next",
-    "build:core": "tsc && cpy .env.production app --rename .env",
+    "build:core": "tsc --project ts/tsconfig.prod.json && cpy .env.production app --rename .env",
     "build:next": "cpy client/**/*.* !client/next.config.ts app --parents && next build app/client",
     "lint": "tslint --project .",
     "lint:fix": "tslint --project . --fix"

@@ -43,7 +43,7 @@ const nextConfig: ServerOptions = {
   quiet: true,
   conf: composer([css, fonts, optimizedImages, typescript], {
     assetPrefix: basePath,
-    publicRuntimeConfig: { appName, appVersion, basePath },
+    publicRuntimeConfig: { appName, appVersion, basePath, isDev },
   }),
 };
 export { appName, appVersion, isDev, folderPaths, loopbackConfig, nextConfig };

@@ -3,6 +3,7 @@
     /* Basic Options */
     "target": "esnext",
     "module": "commonjs",
+    "jsx": "preserve",
     "outDir": "app",
     /* Strict Type-Checking Options */
     "strict": true,
@@ -20,12 +21,15 @@
     "esModuleInterop": true,
     "resolveJsonModule": true,
     "typeRoots": ["node_modules/@types", "typings"],
-    "importHelpers": true,
     /* Experimental Options */
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
     /* Plugins */
-    "plugins": [{ "name": "typescript-styled-plugin" }]
+    "plugins": [{ "name": "typescript-styled-plugin" }],
+    /* Syntax Options */
+    "importHelpers": true,
+    "preserveConstEnums": true
   },
-  "include": ["client", "common", "server", "typings"]
+  "include": ["client", "common", "server", "typings"],
+  "exclude": ["node_modules", "client/.next"]
 }

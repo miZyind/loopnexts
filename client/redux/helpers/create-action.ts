@@ -1,3 +1,4 @@
+// Node module
 import { Action } from 'redux';
 
 // FluxStandardAction

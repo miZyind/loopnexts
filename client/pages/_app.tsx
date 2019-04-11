@@ -6,6 +6,8 @@ import { Provider } from 'react-redux';
 import App, { Container, NextAppContext } from 'next/app';
 // Redux
 import { IProps, withReduxStore } from '../redux';
+// Style
+import 'semantic-ui-css/semantic.min.css';
 
 const { appName } = getConfig().publicRuntimeConfig;
 

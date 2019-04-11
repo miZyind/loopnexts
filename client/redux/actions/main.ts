@@ -9,7 +9,7 @@ export enum ActionTypes {
 
 export const Actions = {
   toggleLoadingStatus: () => createAction(ActionTypes.TOGGLE_LOADING_STATUS),
-  toggleStepStatue: () => createAction(ActionTypes.TOGGLE_STEP_STATUS),
+  toggleStepStatus: () => createAction(ActionTypes.TOGGLE_STEP_STATUS),
 };
 
 export type Actions = ActionsUnion<typeof Actions>;

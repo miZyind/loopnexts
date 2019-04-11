@@ -1,6 +1,7 @@
 // Node module
 import React from 'react';
 import getConfig from 'next/config';
+import { connect } from 'react-redux';
 import styled from 'styled-components';
 import {
   Container,
@@ -12,38 +13,27 @@ import {
   Image,
   Step,
 } from 'semantic-ui-react';
-// Style
-import 'semantic-ui-css/semantic.min.css';
+// Redux
+import { Actions } from '../redux/actions/main';
+import { IStore, IMain } from '../redux/models';
 
 const { appName, appVersion } = getConfig().publicRuntimeConfig;
 
-interface IProps {
-  className?: string;
-}
+type Props = IMain &
+  typeof Actions & {
+    className?: string;
+  };
 
-interface IState {
-  isLoading: boolean;
-}
-
-class Index extends React.Component<IProps, IState> {
-  constructor(props: any) {
-    super(props);
-
-    this.state = {
-      isLoading: true,
-    };
-  }
-
+class Index extends React.Component<Props> {
   public componentDidMount() {
-    setTimeout(() => {
-      this.setState({ isLoading: !this.state.isLoading });
-    }, 1000);
+    setTimeout(this.props.toggleLoadingStatus, 1500);
   }
 
   public render() {
+    const { isLoading, isCompleted, toggleStepStatus, className } = this.props;
     return (
       <Container>
-        <Transition visible={this.state.isLoading} duration={500} unmountOnHide>
+        <Transition visible={isLoading} duration={500} unmountOnHide>
           <Dimmer active>
             <Loader size='large' content='Loading...' active />
           </Dimmer>
@@ -55,7 +45,7 @@ class Index extends React.Component<IProps, IState> {
           columns={1}
           textAlign='center'
           verticalAlign='middle'
-          className={this.props.className}
+          className={className}
         >
           <Grid.Column>
             <Header as='h1' icon textAlign='center'>
@@ -63,7 +53,7 @@ class Index extends React.Component<IProps, IState> {
               <Header.Content>{`${appName} v${appVersion}`}</Header.Content>
             </Header>
             <Step.Group ordered>
-              <Step completed={true}>
+              <Step completed={isCompleted} onClick={toggleStepStatus}>
                 <Step.Content>
                   <Step.Title>Getting Started</Step.Title>
                 </Step.Content>
@@ -80,4 +70,7 @@ const StyledIndex = styled(Index)`
   height: 100vh;
 `;
 
-export default () => <StyledIndex />;
+export default connect(
+  ({ main }: IStore) => main,
+  Actions,
+)(StyledIndex);

@@ -1,7 +1,7 @@
 // Node module
 import React from 'react';
 import App, { NextAppContext } from 'next/app';
-// Redux
+// Store
 import configureStore from './store';
 
 type Store = ReturnType<typeof getOrCreateStore>;

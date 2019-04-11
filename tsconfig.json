@@ -3,7 +3,7 @@
     /* Basic Options */
     "target": "esnext",
     "module": "commonjs",
-    "sourceMap": true,
+    "jsx": "preserve",
     "outDir": "app",
     /* Strict Type-Checking Options */
     "strict": true,
@@ -25,7 +25,11 @@
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
     /* Plugins */
-    "plugins": [{ "name": "typescript-styled-plugin" }]
+    "plugins": [{ "name": "typescript-styled-plugin" }],
+    /* Syntax Options */
+    "importHelpers": true,
+    "preserveConstEnums": true
   },
-  "include": ["typings", "client/next.config.ts", "common", "server"]
+  "include": ["client", "common", "server", "typings"],
+  "exclude": ["node_modules", "client/.next"]
 }

@@ -2,26 +2,34 @@
 import React from 'react';
 import Head from 'next/head';
 import getConfig from 'next/config';
+import { Provider } from 'react-redux';
 import App, { Container, NextAppContext } from 'next/app';
+// Redux
+import { IProps, withReduxStore } from '../redux';
+// Style
+import 'semantic-ui-css/semantic.min.css';
 
 const { appName } = getConfig().publicRuntimeConfig;
 
-export default class extends App {
+@withReduxStore
+export default class MainApp extends App<IProps> {
   public static async getInitialProps({ Component, ctx }: NextAppContext) {
     const pageProps = Component.getInitialProps
       ? await Component.getInitialProps(ctx)
       : {};
-    return { pageProps };
+    return { ...pageProps };
   }
 
   public render() {
-    const { Component, pageProps } = this.props;
+    const { Component, pageProps, reduxStore } = this.props;
     return (
       <Container>
         <Head>
           <title>{appName}</title>
         </Head>
-        <Component {...pageProps} />
+        <Provider store={reduxStore}>
+          <Component {...pageProps} />
+        </Provider>
       </Container>
     );
   }

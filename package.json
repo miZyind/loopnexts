@@ -10,7 +10,7 @@
     "start": "cd app && node server",
     "build": "yarn build:rmrf && yarn build:core && yarn build:next",
     "build:rmrf": "rimraf app && rimraf client/.next",
-    "build:core": "tsc --project ts/tsconfig.prod.json && cpy .env.production app --rename .env",
+    "build:core": "tsc --project tsconfig.prod.json && cpy .env.production app --rename .env",
     "build:next": "cpy client/**/*.* !client/next.config.ts app --parents && next build app/client",
     "lint": "tslint --project .",
     "lint:fix": "tslint --project . --fix"
@@ -24,7 +24,19 @@
       "@zeit/next-typescript/babel"
     ],
     "plugins": [
-      "styled-components"
+      "styled-components",
+      [
+        "@babel/plugin-proposal-decorators",
+        {
+          "legacy": true
+        }
+      ],
+      [
+        "@babel/plugin-proposal-class-properties",
+        {
+          "loose": true
+        }
+      ]
     ]
   },
   "prettier": {
@@ -61,8 +73,8 @@
     "react-dom": "^16.8.6",
     "react-redux": "^7.0.1",
     "redux": "^4.0.1",
-    "redux-devtools-extension": "^2.13.8",
     "redux-observable": "^1.1.0",
+    "rxjs": "^6.4.0",
     "semantic-ui-css": "^2.4.1",
     "semantic-ui-react": "^0.86.0",
     "styled-components": "^4.2.0",
@@ -70,6 +82,8 @@
   },
   "devDependencies": {
     "@babel/core": "^7.4.3",
+    "@babel/plugin-proposal-class-properties": "^7.4.0",
+    "@babel/plugin-proposal-decorators": "^7.4.0",
     "@loopback/testlab": "^1.2.2",
     "@types/next": "^8.0.3",
     "@types/next-redux-wrapper": "^2.0.2",
@@ -79,6 +93,7 @@
     "@types/styled-components": "^4.1.14",
     "babel-plugin-styled-components": "^1.10.0",
     "cpy-cli": "^2.0.0",
+    "redux-devtools-extension": "^2.13.8",
     "rimraf": "^2.6.3",
     "ts-node": "^8.0.3",
     "tslint": "^5.15.0",

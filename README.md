@@ -18,7 +18,6 @@
 - **[NextJS](https://nextjs.org)** - A lightweight framework for static and server‑rendered React applications.
   - **[next-routes](https://github.com/fridays/next-routes)** - Easy to use universal dynamic routes for NextJS.
 - **[React](https://reactjs.org)** - Declarative, efficient, and flexible JavaScript library for building user interfaces.
-  - **[react-perf-devtool](https://github.com/nitin42/react-perf-devtool)** - A browser devtool to inspect performance of React components.
   - **[why-did-you-update](https://github.com/maicki/why-did-you-update)** - Puts your console on blast when React is making unnecessary updates.
   - **[React Redux](https://github.com/reactjs/react-redux)** - Official React bindings for Redux.
 - **[Semantic UI React](https://react.semantic-ui.com)** - UI component framework based around useful principles from natural language.
@@ -42,6 +41,9 @@
     - **[tslint-react](https://github.com/palantir/tslint-react)** - Lint rules related to React & JSX for TSLint.
     - **[tslint-config-prettier](https://github.com/prettier/tslint-config-prettier)** - Use tslint with prettier without any conflict.
 - **[Prettier](https://prettier.io)** - An opinionated code formatter.
+- **[Babel](https://babeljs.io)** - The compiler for next generation JavaScript.
+  - **[@babel/plugin-proposal-decorators](https://babeljs.io/docs/en/babel-plugin-proposal-decorators)** - Proposal: JavaScript Decorators.
+  - **[@babel/plugin-proposal-class-properties](https://babeljs.io/docs/en/babel-plugin-proposal-class-properties)** - Proposal: ES Class Fields & Static Properties.
 
 ## Author
 

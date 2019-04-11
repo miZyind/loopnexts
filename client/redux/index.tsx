@@ -38,7 +38,6 @@ export function withReduxStore<P extends IProps>(Component: NextApp<P>) {
         ? await Component.getInitialProps(appContext)
         : {};
 
-
       return {
         ...appProps,
         initialReduxState: reduxStore.getState(),

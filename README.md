@@ -1,7 +1,7 @@
 # LoopNexTS
 
-[![Backend](https://img.shields.io/badge/Backend-LoopBack%204-orange.svg?style=flat-square)](https://loopback.io)
-[![Frontend](https://img.shields.io/badge/Frontend-NextJS%208-008BB8.svg?style=flat-square)](https://nextjs.org)
+[![Backend](https://img.shields.io/badge/Backend-LoopBack-orange.svg?style=flat-square)](https://loopback.io)
+[![Frontend](https://img.shields.io/badge/Frontend-NextJS-008BB8.svg?style=flat-square)](https://nextjs.org)
 [![Language](https://img.shields.io/badge/Language-TypeScript-blue.svg?style=flat-square)](https://www.typescriptlang.org)
 [![Style](https://img.shields.io/badge/Style-Semantic_UI-yellowgreen.svg?style=flat-square)](https://semantic-ui.com)
 

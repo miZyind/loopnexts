@@ -31,11 +31,13 @@ export function withReduxStore<P extends IProps>(Component: NextApp<P>) {
   return class extends React.Component<P> {
     public static async getInitialProps(appContext: NextReduxAppContext) {
       const reduxStore = getOrCreateStore();
+
+      appContext.ctx.reduxStore = reduxStore;
+
       const appProps = Component.getInitialProps
         ? await Component.getInitialProps(appContext)
         : {};
 
-      appContext.ctx.reduxStore = reduxStore;
 
       return {
         ...appProps,

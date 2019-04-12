@@ -20,7 +20,7 @@ export default class Sequence extends DefaultSequence {
       const handle = routes.getRequestHandler(this.nextServer);
       return handle(request, response);
     }
-    // Habdle rest server
+    // Handle rest server
     request.url = request.url.replace(this.baseApiPath, '');
     await super.handle(context);
   }

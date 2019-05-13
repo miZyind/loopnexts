@@ -16,7 +16,7 @@
     "lint:fix": "tslint --project . --fix"
   },
   "engines": {
-    "node": ">=8.9"
+    "node": ">=10.15"
   },
   "babel": {
     "presets": [

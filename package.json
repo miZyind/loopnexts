@@ -65,6 +65,7 @@
     "next": "^8.1.0",
     "next-composer": "^1.0.2",
     "next-fonts": "^0.17.0",
+    "next-i18next": "^0.40.0",
     "next-optimized-images": "^2.5.0",
     "next-redux-wrapper": "^3.0.0-alpha.2",
     "next-routes": "^1.4.2",

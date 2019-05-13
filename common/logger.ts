@@ -1,4 +1,4 @@
-// Node Module
+// Node module
 import pino from 'pino';
 import chalk from 'chalk';
 

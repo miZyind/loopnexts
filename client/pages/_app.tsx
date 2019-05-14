@@ -4,15 +4,24 @@ import Head from 'next/head';
 import getConfig from 'next/config';
 import { Provider } from 'react-redux';
 import App, { Container, NextAppContext } from 'next/app';
+// I18n
+import withI18next, { II18nProps } from '../hocs/withI18next';
 // Redux
-import { IProps, withReduxStore } from '../redux';
+import withReduxStore, { IReduxProps } from '../redux';
 // Style
 import 'semantic-ui-css/semantic.min.css';
 
 const { appName } = getConfig().publicRuntimeConfig;
 
-@withReduxStore
-export default class MainApp extends App<IProps> {
+type InjectedProps = II18nProps & IReduxProps;
+
+/**
+ * Wait for TypeScript to implement "Generic Decorators"
+ * https://github.com/Microsoft/TypeScript/issues/2607
+ */
+@withI18next<InjectedProps>()
+@withReduxStore<InjectedProps>()
+export default class MainApp extends App<InjectedProps> {
   public static async getInitialProps({ Component, ctx }: NextAppContext) {
     const pageProps = Component.getInitialProps
       ? await Component.getInitialProps(ctx)

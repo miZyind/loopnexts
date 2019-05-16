@@ -8,4 +8,7 @@ declare namespace NodeJS {
     PORT: string;
     BASE_PATH: string;
   }
+  interface Process {
+    browser: boolean;
+  }
 }

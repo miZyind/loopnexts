@@ -1,4 +1,4 @@
 {
   "extends": "./tsconfig",
-  "include": ["client/next.config.ts", "common", "server"]
+  "include": ["client/next.config.ts", "common", "server", "typings"]
 }

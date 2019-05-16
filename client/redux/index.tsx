@@ -2,58 +2,46 @@
 import React from 'react';
 import {
   AppComponentType,
-  AppProps,
   DefaultAppIProps,
+  AppProps,
   NextAppContext,
 } from 'next/app';
-// Store
-import configureStore from './store';
+import { NextContext } from 'next';
+import { Provider } from 'react-redux';
+// Redux
+import getOrCreateStore, { Store, State } from './store';
 
-type Store = ReturnType<typeof getOrCreateStore>;
 export interface IReduxProps {
-  reduxStore: Store;
-  initialReduxState?: any;
+  store: Store;
+  state: State;
 }
-type WrappedAppProps = IReduxProps & DefaultAppIProps;
-type NextReduxAppProps = WrappedAppProps & AppProps;
-type NextReduxAppContext = NextAppContext & { ctx: IReduxProps };
+type AppCtx = NextAppContext & {
+  ctx: NextContext & { store: Store };
+};
 
-function getOrCreateStore(
-  initialState = {},
-): ReturnType<typeof configureStore> {
-  if (typeof window === 'undefined') {
-    return configureStore(initialState);
-  }
+export default <P extends DefaultAppIProps & AppProps>() =>
+  function withRedux(App: AppComponentType<P>) {
+    return class extends React.Component<P & IReduxProps> {
+      public static async getInitialProps(appCtx: AppCtx) {
+        appCtx.ctx.store = getOrCreateStore();
+        const appProps = App.getInitialProps
+          ? await App.getInitialProps(appCtx)
+          : {};
 
-  if (!window.__NEXT_REDUX_STORE__) {
-    window.__NEXT_REDUX_STORE__ = configureStore(initialState);
-  }
-  return window.__NEXT_REDUX_STORE__;
-}
+        return {
+          state: appCtx.ctx.store.getState(),
+          ...appProps,
+        };
+      }
 
-export default function withReduxStore(App: AppComponentType<WrappedAppProps>) {
-  return class extends React.Component<NextReduxAppProps> {
-    public static async getInitialProps(appContext: NextReduxAppContext) {
-      appContext.ctx.reduxStore = getOrCreateStore();
+      private store = getOrCreateStore(this.props.state);
 
-      const appProps = App.getInitialProps
-        ? await App.getInitialProps(appContext)
-        : {};
-
-      return {
-        ...appProps,
-        initialReduxState: appContext.ctx.reduxStore.getState(),
-      };
-    }
-    private reduxStore: Store;
-
-    constructor(props: NextReduxAppProps) {
-      super(props);
-      this.reduxStore = getOrCreateStore(props.initialReduxState);
-    }
-
-    public render() {
-      return <App reduxStore={this.reduxStore} {...this.props} />;
-    }
+      public render() {
+        return (
+          <Provider store={this.store!}>
+            <App {...this.props} />
+          </Provider>
+        );
+      }
+    };
   };
-}

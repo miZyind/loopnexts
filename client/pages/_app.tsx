@@ -2,43 +2,31 @@
 import React from 'react';
 import Head from 'next/head';
 import getConfig from 'next/config';
-import { Provider } from 'react-redux';
-import App, { Container, NextAppContext } from 'next/app';
-// I18n
-import withI18next, { II18nProps } from '../hocs/withI18next';
+import { Container, DefaultAppIProps, AppProps } from 'next/app';
+// Hoc
+import withI18n, { II18nProps } from '../hocs/withI18n';
 // Redux
-import withReduxStore, { IReduxProps } from '../redux';
+import withRedux, { IReduxProps } from '../redux';
 // Style
 import 'semantic-ui-css/semantic.min.css';
 
 const { appName } = getConfig().publicRuntimeConfig;
 
-type InjectedProps = II18nProps & IReduxProps;
+type NextAppProps = DefaultAppIProps & AppProps;
+type InjectedProps = NextAppProps & II18nProps & IReduxProps;
 
-/**
- * Wait for TypeScript to implement "Generic Decorators"
- * https://github.com/Microsoft/TypeScript/issues/2607
- */
-@withI18next<InjectedProps>()
-@withReduxStore<InjectedProps>()
-export default class MainApp extends App<InjectedProps> {
-  public static async getInitialProps({ Component, ctx }: NextAppContext) {
-    const pageProps = Component.getInitialProps
-      ? await Component.getInitialProps(ctx)
-      : {};
-    return { ...pageProps };
-  }
-
+@withRedux<InjectedProps>()
+@withI18n<InjectedProps>()
+export default class MainApp extends React.Component<InjectedProps> {
   public render() {
-    const { Component, pageProps, reduxStore } = this.props;
+    const { Component, pageProps } = this.props;
+
     return (
       <Container>
         <Head>
           <title>{appName}</title>
         </Head>
-        <Provider store={reduxStore}>
-          <Component {...pageProps} />
-        </Provider>
+        <Component {...pageProps} />
       </Container>
     );
   }

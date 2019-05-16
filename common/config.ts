@@ -10,6 +10,7 @@ import composer from 'next-composer';
 import typescript from '@zeit/next-typescript';
 import optimizedImages from 'next-optimized-images';
 // Definition
+import { Configuration } from 'webpack';
 import { ServerOptions } from 'next-server';
 
 const isDev = process.env.NODE_ENV === 'development';
@@ -44,6 +45,24 @@ const nextConfig: ServerOptions = {
   conf: composer([css, fonts, optimizedImages, typescript], {
     assetPrefix: basePath,
     publicRuntimeConfig: { appName, appVersion, basePath, isDev },
+    webpack: (config: Configuration) => {
+      config!.module!.rules.forEach((rule) => {
+        const ruleContainsTs = rule!.test!.toString().includes('ts|tsx');
+        if (
+          ruleContainsTs &&
+          rule.use &&
+          typeof rule.use !== 'string' &&
+          typeof rule.use !== 'function' &&
+          !(rule.use instanceof Array) &&
+          typeof rule.use.options !== 'string' &&
+          rule.use.loader === 'next-babel-loader'
+        ) {
+          delete rule.include;
+          rule.use.options!.cwd = process.cwd();
+        }
+      });
+      return config;
+    },
   }),
 };
 export { appName, appVersion, isDev, folderPaths, loopbackConfig, nextConfig };

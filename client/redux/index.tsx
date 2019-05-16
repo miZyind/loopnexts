@@ -31,30 +31,29 @@ function getOrCreateStore(
   return window.__NEXT_REDUX_STORE__;
 }
 
-export default <P extends {}>() =>
-  function withReduxStore(App: AppComponentType<WrappedAppProps & P>) {
-    return class extends React.Component<NextReduxAppProps & P> {
-      public static async getInitialProps(appContext: NextReduxAppContext) {
-        appContext.ctx.reduxStore = getOrCreateStore();
+export default function withReduxStore(App: AppComponentType<WrappedAppProps>) {
+  return class extends React.Component<NextReduxAppProps> {
+    public static async getInitialProps(appContext: NextReduxAppContext) {
+      appContext.ctx.reduxStore = getOrCreateStore();
 
-        const appProps = App.getInitialProps
-          ? await App.getInitialProps(appContext)
-          : {};
+      const appProps = App.getInitialProps
+        ? await App.getInitialProps(appContext)
+        : {};
 
-        return {
-          ...appProps,
-          initialReduxState: appContext.ctx.reduxStore.getState(),
-        };
-      }
-      private reduxStore: Store;
+      return {
+        ...appProps,
+        initialReduxState: appContext.ctx.reduxStore.getState(),
+      };
+    }
+    private reduxStore: Store;
 
-      constructor(props: NextReduxAppProps & P) {
-        super(props);
-        this.reduxStore = getOrCreateStore(props.initialReduxState);
-      }
+    constructor(props: NextReduxAppProps) {
+      super(props);
+      this.reduxStore = getOrCreateStore(props.initialReduxState);
+    }
 
-      public render() {
-        return <App reduxStore={this.reduxStore} {...this.props} />;
-      }
-    };
+    public render() {
+      return <App reduxStore={this.reduxStore} {...this.props} />;
+    }
   };
+}

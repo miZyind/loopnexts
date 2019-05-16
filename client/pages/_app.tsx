@@ -2,34 +2,31 @@
 import React from 'react';
 import Head from 'next/head';
 import getConfig from 'next/config';
-import { Provider } from 'react-redux';
-import App, { Container, NextAppContext } from 'next/app';
+import { Container, DefaultAppIProps, AppProps } from 'next/app';
+// Hoc
+import withI18n, { II18nProps } from '../hocs/withI18n';
 // Redux
-import { IProps, withReduxStore } from '../redux';
+import withRedux, { IReduxProps } from '../hocs/withRedux';
 // Style
 import 'semantic-ui-css/semantic.min.css';
 
 const { appName } = getConfig().publicRuntimeConfig;
 
-@withReduxStore
-export default class MainApp extends App<IProps> {
-  public static async getInitialProps({ Component, ctx }: NextAppContext) {
-    const pageProps = Component.getInitialProps
-      ? await Component.getInitialProps(ctx)
-      : {};
-    return { ...pageProps };
-  }
+type NextAppProps = DefaultAppIProps & AppProps;
+type InjectedProps = NextAppProps & II18nProps & IReduxProps;
 
+@withRedux<InjectedProps>()
+@withI18n<InjectedProps>()
+export default class MainApp extends React.Component<InjectedProps> {
   public render() {
-    const { Component, pageProps, reduxStore } = this.props;
+    const { Component, pageProps } = this.props;
+
     return (
       <Container>
         <Head>
           <title>{appName}</title>
         </Head>
-        <Provider store={reduxStore}>
-          <Component {...pageProps} />
-        </Provider>
+        <Component {...pageProps} />
       </Container>
     );
   }

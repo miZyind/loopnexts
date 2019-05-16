@@ -5,10 +5,13 @@ import {
   RestExplorerComponent,
 } from '@loopback/rest-explorer';
 import { BootMixin } from '@loopback/boot';
+import Backend from 'i18next-node-fs-backend';
+import { LanguageDetector } from 'i18next-express-middleware';
 import { RestApplication } from '@loopback/rest';
 import { RepositoryMixin } from '@loopback/repository';
 import { ServiceMixin } from '@loopback/service-proxy';
 // Common
+import i18n from '../common/i18n';
 import logger from '../common/logger';
 import {
   appName,
@@ -44,13 +47,20 @@ export default class App extends Application {
     this.component(RestExplorerComponent);
     this.bind(AppBindings.BASE_API_PATH).to('/api');
     this.bind(RestExplorerBindings.CONFIG).to({ path: '/explorer' });
-    // Setup next Server
+    // Setup next server
     this.bind(AppBindings.NEXT_SERVER).to(this.nextServer);
     // Setup sequence
     this.sequence(Sequence);
   }
 
   public async start() {
+    // Setup i18n instance
+    await new Promise((resolve) =>
+      i18n
+        .use(Backend)
+        .use(LanguageDetector)
+        .init(resolve),
+    );
     await super.start();
     await this.nextServer.prepare();
     logger.info(

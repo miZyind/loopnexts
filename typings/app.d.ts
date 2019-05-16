@@ -7,3 +7,5 @@ interface Window {
   // Next Redux
   __NEXT_REDUX_STORE__: any;
 }
+// I18n plugin
+declare module 'i18next-node-fs-backend';

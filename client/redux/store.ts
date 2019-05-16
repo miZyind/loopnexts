@@ -5,10 +5,12 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import { createStore, applyMiddleware } from 'redux';
 // Reducer
 import rootReducer from './reducers';
+// Model
+import { IStore } from './models';
 
 const { isDev } = getConfig().publicRuntimeConfig;
 
-export default function configureStore(initialState = {}) {
+function configureStore(initialState = {}) {
   // Middleware
   const epicMiddleware = createEpicMiddleware();
   const middlewares = [epicMiddleware];
@@ -19,4 +21,19 @@ export default function configureStore(initialState = {}) {
     : middleWareEnhancer;
   // Store
   return createStore(rootReducer, initialState, composedEnhancers);
+}
+
+export type Store = ReturnType<typeof getOrCreateStore>;
+export type State = IStore;
+export default function getOrCreateStore(
+  state = {},
+): ReturnType<typeof configureStore> {
+  if (typeof window === 'undefined') {
+    return configureStore(state);
+  }
+
+  if (!window.__NEXT_REDUX_STORE__) {
+    window.__NEXT_REDUX_STORE__ = configureStore(state);
+  }
+  return window.__NEXT_REDUX_STORE__;
 }

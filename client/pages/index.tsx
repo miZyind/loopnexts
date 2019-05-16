@@ -1,5 +1,6 @@
 // Node module
 import React from 'react';
+import { compose } from 'redux';
 import getConfig from 'next/config';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
@@ -13,16 +14,14 @@ import {
   Image,
   Step,
 } from 'semantic-ui-react';
+import { withTranslation, WithTranslation } from 'react-i18next';
 // Redux
 import { Actions } from '../redux/actions/main';
 import { IStore, IMain } from '../redux/models';
 
 const { appName, appVersion } = getConfig().publicRuntimeConfig;
 
-type Props = IMain &
-  typeof Actions & {
-    className?: string;
-  };
+type Props = IMain & typeof Actions & WithTranslation & { className?: string };
 
 class Index extends React.Component<Props> {
   public componentDidMount() {
@@ -30,7 +29,13 @@ class Index extends React.Component<Props> {
   }
 
   public render() {
-    const { isLoading, isCompleted, toggleStepStatus, className } = this.props;
+    const {
+      isLoading,
+      isCompleted,
+      toggleStepStatus,
+      className,
+      t,
+    } = this.props;
     return (
       <Container>
         <Transition visible={isLoading} duration={500} unmountOnHide>
@@ -55,7 +60,7 @@ class Index extends React.Component<Props> {
             <Step.Group ordered>
               <Step completed={isCompleted} onClick={toggleStepStatus}>
                 <Step.Content>
-                  <Step.Title>Getting Started</Step.Title>
+                  <Step.Title>{t('getting-started')}</Step.Title>
                 </Step.Content>
               </Step>
             </Step.Group>
@@ -70,7 +75,10 @@ const StyledIndex = styled(Index)`
   height: 100vh;
 `;
 
-export default connect(
-  ({ main }: IStore) => main,
-  Actions,
+export default compose(
+  connect(
+    ({ main }: IStore) => main,
+    Actions,
+  ),
+  withTranslation(),
 )(StyledIndex);

@@ -9,7 +9,7 @@ const localePath = 'static/locales/{{lng}}/{{ns}}.json';
 const options: i18n.InitOptions = {
   debug: false,
   fallbackLng: 'en',
-  preload: ['en', 'zh'],
+  preload: ['en', 'zh', 'vn'],
   load: 'languageOnly',
   ns: ['common'],
   defaultNS: 'common',

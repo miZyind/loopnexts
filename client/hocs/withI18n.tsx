@@ -60,6 +60,4 @@ export default <P extends DefaultAppIProps & AppProps>() =>
         );
       }
     };
-
-    // return hoistNonReactStatics(AppWithI18n, App, { getInitialProps: true });
   };

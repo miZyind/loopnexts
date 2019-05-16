@@ -9,7 +9,7 @@ import {
 import { NextContext } from 'next';
 import { Provider } from 'react-redux';
 // Redux
-import getOrCreateStore, { Store, State } from './store';
+import getOrCreateStore, { Store, State } from '../redux/store';
 
 export interface IReduxProps {
   store: Store;

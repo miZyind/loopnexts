@@ -6,7 +6,7 @@ import { Container, DefaultAppIProps, AppProps } from 'next/app';
 // Hoc
 import withI18n, { II18nProps } from '../hocs/withI18n';
 // Redux
-import withRedux, { IReduxProps } from '../redux';
+import withRedux, { IReduxProps } from '../hocs/withRedux';
 // Style
 import 'semantic-ui-css/semantic.min.css';
 

@@ -24,6 +24,12 @@ const options: i18n.InitOptions = {
       ? localePath
       : resolve(process.cwd(), 'client', localePath),
   },
+  detection: {
+    order: ['querystring', 'cookie'],
+    lookupCookie: 'lng',
+    lookupQuerystring: 'lng',
+    caches: ['cookie'],
+  },
 };
 
 if (!i18n.isInitialized) {

@@ -43,7 +43,7 @@ const nextConfig: ServerOptions = {
   dir: folderPaths.client,
   quiet: true,
   conf: composer([css, fonts, optimizedImages, typescript], {
-    assetPrefix: basePath,
+    assetPrefix: basePath === '/' ? '' : basePath,
     publicRuntimeConfig: { appName, appVersion, basePath, isDev },
     webpack: (config: Configuration) => {
       config!.module!.rules.forEach((rule) => {

@@ -15,8 +15,8 @@ const { appName } = getConfig().publicRuntimeConfig;
 type NextAppProps = DefaultAppIProps & AppProps;
 type InjectedProps = NextAppProps & II18nProps & IReduxProps;
 
-@withRedux<InjectedProps>()
 @withI18n<InjectedProps>()
+@withRedux<InjectedProps>()
 export default class MainApp extends React.Component<InjectedProps> {
   public render() {
     const { Component, pageProps } = this.props;

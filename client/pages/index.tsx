@@ -18,6 +18,8 @@ import { withTranslation, WithTranslation } from 'react-i18next';
 // Redux
 import { Actions } from '../redux/actions/main';
 import { IStore, IMain } from '../redux/models';
+// Component
+import LanguageSwitcher from '../components/language-switcher';
 
 const { appName, appVersion } = getConfig().publicRuntimeConfig;
 
@@ -64,6 +66,9 @@ class Index extends React.Component<Props> {
                 </Step.Content>
               </Step>
             </Step.Group>
+          </Grid.Column>
+          <Grid.Column>
+            <LanguageSwitcher />
           </Grid.Column>
         </Grid>
       </Container>

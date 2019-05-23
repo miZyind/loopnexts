@@ -10,6 +10,7 @@ import {
 import { NextContext } from 'next';
 // Common
 import i18n, { I18n, Language, II18nStore } from '../../common/i18n';
+import I18nDetector from '../components/i18n-detector';
 
 export interface II18nProps {
   i18nInstance: I18n;
@@ -19,7 +20,6 @@ export interface II18nProps {
 type AppCtx = NextAppContext & {
   ctx: NextContext & { req: { i18n: I18n & { toJSON: () => null } } };
 };
-
 export default <P extends DefaultAppIProps & AppProps>() =>
   function withI18n(App: AppComponentType<P>) {
     return class extends React.Component<P & II18nProps> {
@@ -55,7 +55,9 @@ export default <P extends DefaultAppIProps & AppProps>() =>
         const { i18nInstance } = this.props;
         return (
           <I18nextProvider i18n={i18nInstance || i18n}>
-            <App {...this.props} />
+            <I18nDetector>
+              <App {...this.props} />
+            </I18nDetector>
           </I18nextProvider>
         );
       }

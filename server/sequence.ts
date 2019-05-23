@@ -4,7 +4,6 @@ import { inject } from '@loopback/context';
 import { RequestContext, DefaultSequence } from '@loopback/rest';
 // Common
 import i18n from '../common/i18n';
-import middleware from 'i18next-express-middleware';
 import routes from '../common/routes';
 // Server
 import { AppBindings } from './keys';
@@ -19,11 +18,7 @@ export default class Sequence extends DefaultSequence {
     const { request, response } = context;
     if (!request.url.startsWith(this.baseApiPath)) {
       // Handle i18n
-      middleware.handle(i18n, { ignoreRoutes: ['/_next'] })(
-        request,
-        response,
-        () => null,
-      );
+      request.i18n = i18n;
       // Handle next server
       const handle = routes.getRequestHandler(this.nextServer);
       return handle(request, response);

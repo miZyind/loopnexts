@@ -32,12 +32,10 @@ const options: i18n.InitOptions = {
   },
 };
 
-if (!i18n.isInitialized) {
-  if (isBrowser) {
-    i18n.use(XHR).use(LanguageDetector);
-  }
-  i18n.init(options);
-}
+i18n
+  .use(isBrowser ? XHR : eval(`require('i18next-node-fs-backend')`))
+  .use(LanguageDetector)
+  .init(options);
 
 export type I18n = typeof i18n;
 export type Language = typeof i18n.language;

@@ -5,13 +5,10 @@ import {
   RestExplorerComponent,
 } from '@loopback/rest-explorer';
 import { BootMixin } from '@loopback/boot';
-import Backend from 'i18next-node-fs-backend';
-import { LanguageDetector } from 'i18next-express-middleware';
 import { RestApplication } from '@loopback/rest';
 import { RepositoryMixin } from '@loopback/repository';
 import { ServiceMixin } from '@loopback/service-proxy';
 // Common
-import i18n from '../common/i18n';
 import logger from '../common/logger';
 import {
   appName,
@@ -54,13 +51,6 @@ export default class App extends Application {
   }
 
   public async start() {
-    // Setup i18n instance
-    await new Promise((resolve) =>
-      i18n
-        .use(Backend)
-        .use(LanguageDetector)
-        .init(resolve),
-    );
     await super.start();
     await this.nextServer.prepare();
     logger.info(

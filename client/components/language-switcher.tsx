@@ -15,7 +15,6 @@ class LanguageSwitcher extends React.Component<WithTranslation> {
   // }));
 
   public render() {
-    console.log(this.props.i18n.languages);
     return (
       <Dropdown
         button

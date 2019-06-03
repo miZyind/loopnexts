@@ -9,8 +9,8 @@ import {
 } from 'next/app';
 import { NextContext } from 'next';
 // Common
-import i18n, { I18n, Language, II18nStore } from '../../common/i18n';
 import I18nDetector from '../components/i18n-detector';
+import i18n, { I18n, Language, II18nStore } from '../../common/i18n';
 
 export interface II18nProps {
   i18nInstance: I18n;
@@ -52,9 +52,13 @@ export default <P extends DefaultAppIProps & AppProps>() =>
       }
 
       public render() {
-        const { i18nInstance } = this.props;
+        const { i18nInstance, initialLanguage, initialI18nStore } = this.props;
         return (
-          <I18nextProvider i18n={i18nInstance || i18n}>
+          <I18nextProvider
+            i18n={i18nInstance || i18n}
+            initialLanguage={initialLanguage}
+            initialI18nStore={initialI18nStore}
+          >
             <I18nDetector>
               <App {...this.props} />
             </I18nDetector>

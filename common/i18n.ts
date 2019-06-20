@@ -2,7 +2,8 @@
 import i18n from 'i18next';
 import { resolve } from 'path';
 import XHR from 'i18next-xhr-backend';
-import LanguageDetector from 'i18next-browser-languagedetector';
+import BrowserLngDetector from 'i18next-browser-languagedetector';
+import { LanguageDetector as ServerLngDetector } from 'i18next-express-middleware';
 
 const isBrowser = process.browser;
 const localePath = 'static/locales/{{lng}}/{{ns}}.json';
@@ -30,16 +31,22 @@ const options: i18n.InitOptions = {
     lookupQuerystring: 'lng',
     caches: ['cookie'],
   },
+  react: {
+    wait: true,
+    useSuspense: false,
+  },
 };
 
-i18n
-  .use(isBrowser ? XHR : eval(`require('i18next-node-fs-backend')`))
-  .use(LanguageDetector)
-  .init(options);
+if (!i18n.isInitialized) {
+  if (isBrowser) {
+    i18n.use(XHR).use(BrowserLngDetector);
+  } else {
+    // tslint:disable-next-line:no-eval
+    const FS = eval(`require('i18next-node-fs-backend')`);
+    i18n.use(FS).use(ServerLngDetector);
+  }
 
-export type I18n = typeof i18n;
-export type Language = typeof i18n.language;
-export interface II18nStore {
-  [lng: string]: { [ns: string]: { [key: string]: string } };
+  i18n.init(options);
 }
+
 export default i18n;

@@ -9,7 +9,7 @@ import css from '@zeit/next-css';
 import composer from 'next-composer';
 import typescript from '@zeit/next-typescript';
 import optimizedImages from 'next-optimized-images';
-// Definition
+// Type definition
 import { Configuration } from 'webpack';
 import { ServerOptions } from 'next-server';
 

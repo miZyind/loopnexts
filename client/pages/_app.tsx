@@ -2,22 +2,18 @@
 import React from 'react';
 import Head from 'next/head';
 import getConfig from 'next/config';
-import { Container, DefaultAppIProps, AppProps } from 'next/app';
+import App, { Container } from 'next/app';
 // Hoc
-import withI18n, { II18nProps } from '../hocs/withI18n';
-// Redux
-import withRedux, { IReduxProps } from '../hocs/withRedux';
+import withI18n from '../hocs/with-i18n';
+import withRedux from '../hocs/with-redux';
 // Style
 import 'semantic-ui-css/semantic.min.css';
 
 const { appName } = getConfig().publicRuntimeConfig;
 
-type NextAppProps = DefaultAppIProps & AppProps;
-type InjectedProps = NextAppProps & II18nProps & IReduxProps;
-
-@withI18n<InjectedProps>()
-@withRedux<InjectedProps>()
-export default class MainApp extends React.Component<InjectedProps> {
+@withI18n
+@withRedux
+export default class LoopNexTS extends App {
   public render() {
     const { Component, pageProps } = this.props;
 

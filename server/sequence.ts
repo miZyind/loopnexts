@@ -1,12 +1,18 @@
 // Node module
 import { Server } from 'next';
 import { inject } from '@loopback/context';
+import i18nextMiddleware from 'i18next-express-middleware';
 import { RequestContext, DefaultSequence } from '@loopback/rest';
 // Common
 import i18n from '../common/i18n';
 import routes from '../common/routes';
 // Server
 import { AppBindings } from './keys';
+
+const handleI18n = ({ request, response }: RequestContext) =>
+  new Promise((resolve) =>
+    i18nextMiddleware.handle(i18n)(request, response, resolve),
+  );
 
 export default class Sequence extends DefaultSequence {
   @inject(AppBindings.NEXT_SERVER)
@@ -18,7 +24,7 @@ export default class Sequence extends DefaultSequence {
     const { request, response } = context;
     if (!request.url.startsWith(this.baseApiPath)) {
       // Handle i18n
-      request.i18n = i18n;
+      await handleI18n(context);
       // Handle next server
       const handle = routes.getRequestHandler(this.nextServer);
       return handle(request, response);

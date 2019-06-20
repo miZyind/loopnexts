@@ -23,7 +23,7 @@ import LanguageSwitcher from '../components/language-switcher';
 
 const { appName, appVersion } = getConfig().publicRuntimeConfig;
 
-type Props = IMain & typeof Actions & WithTranslation & { className?: string };
+type Props = IMain & typeof Actions & WithTranslation & StyledProps;
 
 class Index extends React.Component<Props> {
   public componentDidMount() {

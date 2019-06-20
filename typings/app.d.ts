@@ -9,3 +9,7 @@ interface Window {
 }
 // I18n plugin
 declare module 'i18next-node-fs-backend';
+// Styled components
+interface StyledProps {
+  className?: string;
+}

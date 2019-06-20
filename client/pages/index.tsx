@@ -14,7 +14,7 @@ import {
   Image,
   Step,
 } from 'semantic-ui-react';
-import { withNamespaces, WithNamespaces } from 'react-i18next';
+import { withTranslation, WithTranslation } from 'react-i18next';
 // Redux
 import { Actions } from '../redux/actions/main';
 import { IStore, IMain } from '../redux/models';
@@ -23,7 +23,7 @@ import LanguageSwitcher from '../components/language-switcher';
 
 const { appName, appVersion } = getConfig().publicRuntimeConfig;
 
-type Props = IMain & typeof Actions & WithNamespaces & { className?: string };
+type Props = IMain & typeof Actions & WithTranslation & StyledProps;
 
 class Index extends React.Component<Props> {
   public componentDidMount() {
@@ -85,5 +85,5 @@ export default compose(
     ({ main }: IStore) => main,
     Actions,
   ),
-  withNamespaces(),
+  withTranslation(),
 )(StyledIndex);

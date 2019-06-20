@@ -6,43 +6,39 @@ import {
   AppProps,
   NextAppContext,
 } from 'next/app';
-import { NextContext } from 'next';
 import { Provider } from 'react-redux';
 // Redux
 import getOrCreateStore, { Store, State } from '../redux/store';
 
-type AppCtx = NextAppContext & {
-  ctx: NextContext & { store: Store };
-};
-
-export interface IReduxProps {
+interface IReduxProps {
   store: Store;
   state: State;
 }
 
-export default <P extends DefaultAppIProps & AppProps>() =>
-  function withRedux(App: AppComponentType<P>) {
-    return class extends React.Component<P & IReduxProps> {
-      public static async getInitialProps(appCtx: AppCtx) {
-        appCtx.ctx.store = getOrCreateStore();
-        const appProps = App.getInitialProps
-          ? await App.getInitialProps(appCtx)
-          : {};
+type WrappedProps = DefaultAppIProps & AppProps & IReduxProps;
 
-        return {
-          state: appCtx.ctx.store.getState(),
-          ...appProps,
-        };
-      }
+export default function withRedux(App: AppComponentType<DefaultAppIProps>) {
+  return class extends React.Component<WrappedProps> {
+    public static async getInitialProps(ctx: NextAppContext) {
+      ctx.ctx.store = getOrCreateStore();
+      const appProps = App.getInitialProps
+        ? await App.getInitialProps(ctx)
+        : { pageProps: {} };
 
-      private store = getOrCreateStore(this.props.state);
+      return {
+        ...appProps,
+        state: ctx.ctx.store.getState(),
+      };
+    }
 
-      public render() {
-        return (
-          <Provider store={this.store!}>
-            <App {...this.props} />
-          </Provider>
-        );
-      }
-    };
+    private store = getOrCreateStore(this.props.state);
+
+    public render() {
+      return (
+        <Provider store={this.store!}>
+          <App {...this.props} />
+        </Provider>
+      );
+    }
   };
+}

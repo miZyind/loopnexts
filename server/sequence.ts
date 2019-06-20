@@ -10,9 +10,9 @@ import routes from '../common/routes';
 import { AppBindings } from './keys';
 
 const handleI18n = ({ request, response }: RequestContext) =>
-  new Promise((resolve) => {
-    i18nextMiddleware.handle(i18n)(request, response, resolve);
-  });
+  new Promise((resolve) =>
+    i18nextMiddleware.handle(i18n)(request, response, resolve),
+  );
 
 export default class Sequence extends DefaultSequence {
   @inject(AppBindings.NEXT_SERVER)

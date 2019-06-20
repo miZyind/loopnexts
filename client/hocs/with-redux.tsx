@@ -11,13 +11,14 @@ import { Provider } from 'react-redux';
 // Redux
 import getOrCreateStore, { Store, State } from '../redux/store';
 
+type AppCtx = NextAppContext & {
+  ctx: NextContext & { store: Store };
+};
+
 export interface IReduxProps {
   store: Store;
   state: State;
 }
-type AppCtx = NextAppContext & {
-  ctx: NextContext & { store: Store };
-};
 
 export default <P extends DefaultAppIProps & AppProps>() =>
   function withRedux(App: AppComponentType<P>) {

@@ -1,9 +1,9 @@
 // Node module
 import React from 'react';
 import { Dropdown, DropdownProps } from 'semantic-ui-react';
-import { withNamespaces, WithNamespaces } from 'react-i18next';
+import { withTranslation, WithTranslation } from 'react-i18next';
 
-class LanguageSwitcher extends React.Component<WithNamespaces> {
+class LanguageSwitcher extends React.Component<WithTranslation> {
   private options = [
     { key: 'Chinese', text: 'Chinese', value: 'zh' },
     { key: 'English', text: 'English', value: 'en' },
@@ -40,4 +40,4 @@ class LanguageSwitcher extends React.Component<WithNamespaces> {
 //   { key: 'Vietnamese', text: 'Vietnamese', value: 'Vietnamese' },
 // ];
 
-export default withNamespaces()(LanguageSwitcher);
+export default withTranslation()(LanguageSwitcher);

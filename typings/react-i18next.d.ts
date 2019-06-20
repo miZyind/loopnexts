@@ -1,7 +1,7 @@
 import 'react-i18next';
+import i18next from 'i18next';
+import { AppComponentType, DefaultAppIProps } from 'next/app';
 declare module 'react-i18next' {
-  import i18next from 'i18next';
-  import { AppComponentType, DefaultAppIProps } from 'next/app';
   interface IWithSSRProps {
     initialLanguage: string;
     initialI18nStore: {

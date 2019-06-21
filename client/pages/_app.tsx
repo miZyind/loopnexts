@@ -9,6 +9,8 @@ import withRedux from '../hocs/with-redux';
 // Style
 import 'semantic-ui-css/semantic.min.css';
 
+import { LayoutContextProvider } from '../contexts/layout';
+
 const { appName } = getConfig().publicRuntimeConfig;
 
 @withI18n
@@ -22,7 +24,9 @@ export default class LoopNexTS extends App {
         <Head>
           <title>{appName}</title>
         </Head>
-        <Component {...pageProps} />
+        <LayoutContextProvider>
+          <Component {...pageProps} />
+        </LayoutContextProvider>
       </Container>
     );
   }

@@ -1,12 +1,17 @@
-import { useLayoutValue } from '../contexts/layout';
+import { useUIContext } from '../contexts/ui';
 
 const Test = () => {
-  const { displayType, windowResize } = useLayoutValue();
-  const onChange = (e) => windowResize(Number(e.target.value));
+  const {
+    state: { displayType },
+    actions: { windowResize },
+  } = useUIContext();
   return (
     <div>
       <h1>displayType: {displayType}</h1>
-      <input type='number' onChange={onChange} />
+      <input
+        type='number'
+        onChange={({ target }) => windowResize(Number(target.value))}
+      />
     </div>
   );
 };

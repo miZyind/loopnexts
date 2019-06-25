@@ -22,7 +22,7 @@ interface IState {
 }
 
 const initialState: IState = {
-  displayType: DisplayTypes.MOBILE,
+  displayType: DisplayTypes.LARGE_MONITOR,
 };
 
 enum ActionTypes {

@@ -1,5 +1,5 @@
 // Node module
-import { createAction, createContext } from '../helpers';
+import { createAction, createContext } from 'react-hirc';
 
 /**
  * The Standard Semantic UI Breakpoints

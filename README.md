@@ -1,3 +1,5 @@
+![LoopNexTS](https://github.com/miZyind/loopnexts/blob/assets/banner/horizontal.png)
+
 # LoopNexTS
 
 [![Backend](https://img.shields.io/badge/Backend-LoopBack-orange.svg?style=flat-square)](https://loopback.io)
